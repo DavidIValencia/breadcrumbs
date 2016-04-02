@@ -1,3 +1,4 @@
+// test. Is this visable?
 var React = require('react-native')
 var Main = require('./app/Components/Main')
 
