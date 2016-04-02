@@ -1,7 +1,6 @@
 var React = require('react-native')
 var MapView = require('./MapView')
-var TripView = require('./TripView')
-
+var TripSummary = require('./TripSummary')
 
 var {
   StyleSheet,
@@ -58,12 +57,16 @@ var styles = StyleSheet.create({
 });
 
 class TripPage extends React.Component{
-    goToMap(){
-      this.props.navigator.push({
-        title: "MapView",
-        component: MapView
-      });
-    }
+
+  goToMap(){
+    this.setState({
+      isLoading: true
+    });
+    this.props.navigator.push({
+      title: "Map View",
+      component: MapView
+    });
+  }
 
   handleSubmit(){
     this.setState({
@@ -77,37 +80,38 @@ class TripPage extends React.Component{
 
   render(){
     return (
-      <TouchableHighlight
+      <View style={styles.mainContainer}>
+        <TouchableHighlight
+          style={styles.button}
           onPress={this.goToMap.bind(this)}
           underlayColor='#88D4F5'>
             <Text style={styles.buttonText}>View Path on Map</Text>
-      </TouchableHighlight>
-      <View style={styles.mainContainer}>
-      <Text>Add Photo</Text>
-      <TextInput
-        style={styles.searchInput} />
-      <Text>Add Note</Text>
-      <TextInput
-        style={styles.searchInput} />
-      <Text>Add Tags</Text>
-      <TextInput
-        style={styles.searchInput} />
-        <TouchableHighlight
-          style={styles.button}
-          onPress={() => AlertIOS.alert(
-              'Trip Saved!'
-            )
-          }
-          underlayColor="green">
-            <Text style={styles.title}>Save Breadcrumb</Text>
         </TouchableHighlight>
+        <Text>Add Photo</Text>
+        <TextInput
+          style={styles.searchInput} />
+        <Text>Add Note</Text>
+        <TextInput
+          style={styles.searchInput} />
+        <Text>Add Tags</Text>
+        <TextInput
+          style={styles.searchInput} />
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => AlertIOS.alert(
+                'Trip Saved!'
+              )
+            }
+            underlayColor="green">
+              <Text style={styles.title}>Save Breadcrumb</Text>
+          </TouchableHighlight>
 
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.handleSubmit.bind(this)}
-          underlayColor="red">
-            <Text style={styles.title}> End Trip </Text>
-        </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={this.handleSubmit.bind(this)}
+            underlayColor="red">
+              <Text style={styles.title}> End Trip </Text>
+          </TouchableHighlight>
       </View>
     )
   }
