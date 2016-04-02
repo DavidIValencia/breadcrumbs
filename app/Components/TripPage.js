@@ -1,4 +1,6 @@
 var React = require('react-native')
+var MapView = require('./MapView')
+var TripView = require('./TripView')
 
 
 var {
@@ -56,6 +58,12 @@ var styles = StyleSheet.create({
 });
 
 class TripPage extends React.Component{
+    goToMap(){
+      this.props.navigator.push({
+        title: "MapView",
+        component: MapView
+      });
+    }
 
   handleSubmit(){
     this.setState({
@@ -69,6 +77,11 @@ class TripPage extends React.Component{
 
   render(){
     return (
+      <TouchableHighlight
+          onPress={this.goToMap.bind(this)}
+          underlayColor='#88D4F5'>
+            <Text style={styles.buttonText}>View Path on Map</Text>
+      </TouchableHighlight>
       <View style={styles.mainContainer}>
       <Text>Add Photo</Text>
       <TextInput

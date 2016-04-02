@@ -1,6 +1,5 @@
 var React = require('react-native')
 
-
 var {
   StyleSheet,
   Text,
@@ -64,7 +63,5 @@ class UserPage extends React.Component{
     )
   }
 }
-
-
 
 module.exports = UserPage;
