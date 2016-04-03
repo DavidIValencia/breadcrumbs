@@ -13,7 +13,8 @@ var {
   View,
   TouchableHighlight,
   ActivityIndicatorIOS,
-  TextInput
+  TextInput,
+  AlertIOS
 } = React;
 
 var styles = StyleSheet.create({
@@ -62,10 +63,49 @@ var styles = StyleSheet.create({
 
 class TripSummary extends React.Component{
 
+  saveTrip(){
+    this.setState({
+      isLoading: true
+    });
+    this.props.navigator.popN(2);
+  }
+
   render(){
     return (
       <View style={styles.mainContainer}>
-        <Text>Boooooobs</Text>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.saveTrip.bind(this)}
+          underlayColor='#88D4F5'>
+            <Text style={styles.buttonText}>Save the Trip</Text>
+        </TouchableHighlight>
+        <Text>Name Trip</Text>
+        <TextInput
+          style={styles.searchInput} />
+        <Text>Description</Text>
+        <TextInput
+          style={styles.searchInput} />
+        <Text>Add Tags</Text>
+        <TextInput
+          style={styles.searchInput} />
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => AlertIOS.alert(
+                'Are You Sure?'
+              )
+            }
+            underlayColor="green">
+              <Text style={styles.title}>Delete This Shit</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => AlertIOS.alert(
+                'Sharing is caring'
+              )
+            }
+            underlayColor="red">
+              <Text style={styles.title}> Share Trip </Text>
+          </TouchableHighlight>
       </View>
     )
   }
