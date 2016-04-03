@@ -58,13 +58,13 @@ var styles = StyleSheet.create({
 class Home extends React.Component{
     goToUserPage(){
       this.props.navigator.push({
-        title: "UserPage",
+        title: "Past Trips",
         component: UserPage
       });
     }
       newTrip(){
       this.props.navigator.push({
-        title: "TripPage",
+        title: "Trip Page",
         component: TripPage
       });
     }
