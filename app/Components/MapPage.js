@@ -1,4 +1,5 @@
 var React = require('react-native')
+var MapView = require('react-native-maps')
 
 var {
   StyleSheet,
@@ -51,17 +52,35 @@ var styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
+  map: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  }
 });
 
-class MapView extends React.Component{
+class MapPage extends React.Component{
 
   render(){
     return (
       <View style={styles.mainContainer}>
-        <Text>Boooooobs</Text>
+       <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0,
+          longitudeDelta: 0
+        }}
+          <Mapview.Marker
+            coordinate={marker.latlng}
+          />
+        />
       </View>
     )
   }
 }
 
-module.exports = MapView;
+module.exports = MapPage;

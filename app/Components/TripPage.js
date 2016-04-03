@@ -1,5 +1,5 @@
 var React = require('react-native')
-var MapView = require('./MapView')
+var MapPage = require('./MapPage')
 var TripSummary = require('./TripSummary')
 
 var {
@@ -64,7 +64,7 @@ class TripPage extends React.Component{
     });
     this.props.navigator.push({
       title: "Map View",
-      component: MapView
+      component: MapPage
     });
   }
 
