@@ -74,6 +74,7 @@ var marker = {
 
 
 class MapPage extends React.Component{
+  
   render(){
     return (
       <View style={styles.mainContainer}>
