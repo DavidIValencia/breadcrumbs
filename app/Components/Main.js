@@ -37,6 +37,17 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff'
   },
+
+  backgroundImage: {
+    flex: 1,
+    // resizeMode: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // resizeMode: Image.resizeMode.contain,
+    width: null,
+    height: null,
+  },
+
   searchInput: {
     height: 50,
     padding: 4,
@@ -107,10 +118,8 @@ class Main extends React.Component{
 
   render(){
     return (
-      <View style={styles.mainContainer}>
-      <Image
-        source={require('../Images/breadcrumbs_loaficonsolo-01.png')}
-        style={styles.image}/>
+      <Image source={require('../Images/animation.gif')} style={styles.backgroundImage}>
+
       <TextInput
         onChangeText={ (text)=> this.setState({name: text}) }
         style={styles.input} placeholder="Name">
@@ -135,7 +144,7 @@ class Main extends React.Component{
         underlayColor="green">
           <Text style={styles.buttonText}>Register</Text>
       </TouchableHighlight>
-      </View>
+      </Image>
       )
   }
 }
