@@ -7,6 +7,7 @@ var {
   StyleSheet,
   Text,
   View,
+  Image,
   TouchableHighlight,
   AlertIOS,
   ActivityIndicatorIOS,
@@ -77,7 +78,7 @@ class Main extends React.Component{
   handleSubmit(){
     api.checkUser(this.state.name)
     .then((res) => {
-      if(res.user.password !== this.state.password){
+      if(res.info.password !== this.state.password){
         AlertIOS.alert(
           'Incorrect Password'
         )
@@ -104,6 +105,7 @@ class Main extends React.Component{
   render(){
     return (
       <View style={styles.mainContainer}>
+      <Image source={{}} style={styles.image}/>
       <TextInput
         onChangeText={ (text)=> this.setState({name: text}) }
         style={styles.input} placeholder="Name">
