@@ -56,16 +56,19 @@ var styles = StyleSheet.create({
   },
 });
 
+var tripCrumbs = []
+
+
 class TripPage extends React.Component{
 
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     crumbs: {},
-  //     isLoading: false,
-  //     error: false,
-  //   }
-  // }
+  constructor(props){
+    super(props);
+    this.state = {
+      crumbs: {},
+      isLoading: false,
+      error: false
+    }
+  }
 
   goToMap(){
     this.setState({
@@ -77,7 +80,7 @@ class TripPage extends React.Component{
     });
   }
 
-  handleSubmit(){
+  saveTrip(){
     this.setState({
       isLoading: true
     });
@@ -86,13 +89,18 @@ class TripPage extends React.Component{
       component: TripSummary
     });
   }
-  //In progress
-  // saveCrumb(){
-  //   this.setState({
-  //     isLoading:true
-  //   });
-  //   api.saveCrumb(this.state.crumb)
-  // }
+
+  saveCrumb() {
+    navigator.geolocation.getCurrentPosition((position) => { 
+      tripCrumbs.push({
+        title: this.state.title,
+        note: this.state.note,
+        tag: this.state.tag,
+        pos: position
+      });
+      debugger
+    })
+  }
 
   render(){
     return (
@@ -103,28 +111,28 @@ class TripPage extends React.Component{
           underlayColor='#88D4F5'>
             <Text style={styles.buttonText}>View Path on Map</Text>
         </TouchableHighlight>
-        <Text>Add Photo</Text>
+        <Text>Add Title</Text>
         <TextInput
-          style={styles.searchInput} />
+          style={styles.searchInput}
+          onChangeText={ (text)=> this.setState({title: text}) } />
         <Text>Add Note</Text>
         <TextInput
-          style={styles.searchInput} />
+          style={styles.searchInput}
+          onChangeText={ (text)=> this.setState({note: text}) } />
         <Text>Add Tags</Text>
         <TextInput
-          style={styles.searchInput} />
+          style={styles.searchInput}
+          onChangeText={ (text)=> this.setState({tag: text}) } />
           <TouchableHighlight
             style={styles.button}
-            onPress={() => AlertIOS.alert(
-                'Trip Saved!'
-              )
-            }
+            onPress={this.saveCrumb.bind(this)}
             underlayColor="green">
               <Text style={styles.title}>Save Breadcrumb</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={styles.button}
-            onPress={this.handleSubmit.bind(this)}
+            onPress={this.saveTrip.bind(this)}
             underlayColor="red">
               <Text style={styles.title}> End Trip </Text>
           </TouchableHighlight>
