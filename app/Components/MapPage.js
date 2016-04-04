@@ -1,4 +1,4 @@
-var React = require('react-native')
+  var React = require('react-native')
 var MapView = require('react-native-maps')
 
 var {
@@ -63,7 +63,30 @@ var styles = StyleSheet.create({
 
 class MapPage extends React.Component{
 
+  constructor(props){
+    super(props);
+    this.state = {
+      crumbs: this.props.trip,
+      isLoading: false,
+      error: false
+    }
+  }
+
   render(){
+    var pins = this.props.trip.map((marker,index) => {
+      return (
+        <MapView.Marker
+          coordinate={{
+            latitude: marker.pos.coords.latitude,
+            longitude: marker.pos.coords.longitude
+          }}
+          title={marker.title}
+          description={marker.note}
+          key={index}
+        />
+      )
+    });
+
     return (
       <View style={styles.mainContainer}>
        <MapView
@@ -71,24 +94,18 @@ class MapPage extends React.Component{
         initialRegion={{
           latitude: 37.78825,
           longitude: -122.4324,
-          latitudeDelta: 0,
-          longitudeDelta: 0
+          latitudeDelta: 0.09,
+          longitudeDelta: 0.09
         }}>
-          {this.props.trip.map(marker => (
-          <MapView.Marker
-            coordinate={{
-              latitude: marker.pos.coords.latitude,
-              longitude: marker.pos.coords.longitude
-            }}
-            key={i}
-            title={marker.title}
-            description={marker.note}
-          />
-          ))}
+        {pins}
         </MapView>
       </View>
     )
   }
-}
+};
+
+MapPage.propTypes = {
+  trip: React.PropTypes.array.isRequired
+};
 
 module.exports = MapPage;
