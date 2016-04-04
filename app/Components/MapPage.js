@@ -61,16 +61,22 @@ var styles = StyleSheet.create({
   }
 });
 
-// debugger
-var marker = {
-  latlng: {
+//this array could be crumbs coordinates. Titles and descriptions
+//must go in a different array.
+var markers = [
+  {
     latitude: 37.78825,
-    longitude: -122.4324
+    longitude: -122.4324,
   },
-  title: 'Crumb Title!',
-  description: 'Heres a fun crumb!'
-};
-
+  {
+    latitude: 37.79,
+    longitude: -122.44,
+  },
+  {
+    latitude: 37.8,
+    longitude: -122.45,
+  }
+];
 
 class MapPage extends React.Component{
   renderRow(rowData){
@@ -93,11 +99,20 @@ class MapPage extends React.Component{
           latitudeDelta: 0,
           longitudeDelta: 0
         }}>
-          <MapView.Marker
-            coordinate={marker.latlng}
-            title={marker.title}
-            description={marker.description}
-          />
+        //this block adds pins from an array
+        {
+          markers.map(marker => (
+            <MapView.Marker
+              coordinate={{
+                latitude: marker.latitude,
+                longitude: marker.longitude
+              }}
+              //add stuff here for title and description
+            />
+          ))
+        }
+        //this line connects the pins
+        <MapView.Polyline coordinates={markers} />
         </MapView>
       </View>
     )
