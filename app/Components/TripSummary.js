@@ -63,10 +63,15 @@ var styles = StyleSheet.create({
 
 class TripSummary extends React.Component{
 
+  constructor(props){
+    super(props);
+  }
+
   saveTrip(){
     this.setState({
       isLoading: true
     });
+    clearInterval(this.props.pings);
     this.props.navigator.popN(2);
   }
 
