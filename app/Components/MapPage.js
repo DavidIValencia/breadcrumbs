@@ -67,14 +67,20 @@ var markers = [
   {
     latitude: 37.78825,
     longitude: -122.4324,
+    pigs: true,
+    cierzan_rules: true
   },
   {
     latitude: 37.79,
     longitude: -122.44,
+    pigs: true,
+    cierzan_rules: true
   },
   {
     latitude: 37.8,
     longitude: -122.45,
+    pigs: true,
+    cierzan_rules: true
   }
 ];
 
@@ -100,16 +106,17 @@ class MapPage extends React.Component{
           longitudeDelta: 0.09
         }}>
         {
-          markers.map(marker => (
+          markers.map((marker, index) => (
             <MapView.Marker
               coordinate={{
                 latitude: marker.latitude,
                 longitude: marker.longitude
               }}
+              key={index}
             />
           ))
         }
-        <MapView.Polyline coordinates={markers} />
+          <MapView.Polyline coordinates={markers} />
         </MapView>
       </View>
     )
