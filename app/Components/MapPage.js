@@ -1,6 +1,5 @@
 var React = require('react-native')
-var UserPage = require('./UserPage')
-var TripPage = require('./TripPage')
+var MapView = require('react-native-maps')
 
 var {
   StyleSheet,
@@ -8,7 +7,7 @@ var {
   View,
   TouchableHighlight,
   ActivityIndicatorIOS,
-  TextInput
+  TextInput,
 } = React;
 
 var styles = StyleSheet.create({
@@ -53,37 +52,47 @@ var styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
+  map: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  }
 });
 
-class Home extends React.Component{
-    goToUserPage(){
-      this.props.navigator.push({
-        title: "Past Trips",
-        component: UserPage
-      });
-    }
-      newTrip(){
-      this.props.navigator.push({
-        title: "Trip Page",
-        component: TripPage
-      });
-    }
+// debugger
+var marker = {
+  latlng: {
+    latitude: 37.78825,
+    longitude: -122.4324
+  },
+  title: 'Crumb Title!',
+  description: 'Heres a fun crumb!'
+};
+
+
+class MapPage extends React.Component{
   render(){
     return (
       <View style={styles.mainContainer}>
-        <TouchableHighlight
-          onPress={this.goToUserPage.bind(this)}
-          underlayColor='#88D4F5'>
-            <Text style={styles.buttonText}>Past Trips</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={this.newTrip.bind(this)}
-          underlayColor='#88D4F5'>
-            <Text style={styles.buttonText}>Start New Trip</Text>
-        </TouchableHighlight>
+       <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0,
+          longitudeDelta: 0
+        }}>
+          <MapView.Marker
+            coordinate={marker.latlng}
+            title={marker.title}
+            description={marker.description}
+          />
+        </MapView>
       </View>
     )
   }
 }
 
-module.exports = Home;
+module.exports = MapPage;
