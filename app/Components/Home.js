@@ -86,8 +86,4 @@ class Home extends React.Component{
   }
 }
 
-Home.propTypes = {
-  username: React.PropTypes.object.isRequired
-}
-
 module.exports = Home;
