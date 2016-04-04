@@ -28,44 +28,67 @@ var styles = StyleSheet.create({
     marginTop: 10,
     padding: 4,
     fontSize: 18,
+    borderColor: '#48bbec',
     borderWidth: 1,
-    borderColor: '#48bbec'
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
+    color: 'white',
+    backgroundColor: 'black',
+    opacity: 0.5,
   },
+
   title: {
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
-    color: '#fff'
+    color: 'white'
   },
+
+  backgroundImage: {
+    flex: 1,
+    // resizeMode: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // resizeMode: Image.resizeMode.contain,
+    width: null,
+    height: null,
+  },
+
   searchInput: {
     height: 50,
-    padding: 4,
+    padding: 20,
     marginRight: 5,
     fontSize: 23,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: 'white',
     borderRadius: 8,
-    color: 'white'
+    color: 'white',
   },
   image: {
     height: 250,
   },
   buttonText: {
     fontSize: 18,
-    color: '#111',
+    color: 'white',
     alignSelf: 'center'
   },
   button: {
+    opacity: 0.5,
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'green',
+    backgroundColor: 'black',
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
     marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
 });
 
@@ -107,10 +130,9 @@ class Main extends React.Component{
 
   render(){
     return (
-      <View style={styles.mainContainer}>
-      <Image
-        source={require('../Images/breadcrumbs_loaficonsolo-01.png')}
-        style={styles.image}/>
+
+      <Image source={require('../Images/paris.gif')} style={styles.backgroundImage}>
+
       <TextInput
         onChangeText={ (text)=> this.setState({name: text}) }
         style={styles.input} placeholder="Name">
@@ -135,7 +157,7 @@ class Main extends React.Component{
         underlayColor="green">
           <Text style={styles.buttonText}>Register</Text>
       </TouchableHighlight>
-      </View>
+      </Image>
       )
   }
 }
