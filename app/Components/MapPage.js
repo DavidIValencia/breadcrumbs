@@ -96,7 +96,7 @@ class MapPage extends React.Component{
         />
       )
     });
-    
+
     return (
       <View style={styles.mainContainer}>
        <MapView
@@ -105,8 +105,8 @@ class MapPage extends React.Component{
         initialRegion={{
           latitude: 37.78825,
           longitude: -122.4324,
-          latitudeDelta: 0,
-          longitudeDelta: 0
+          latitudeDelta: 0.09,
+          longitudeDelta: 0.09
         }}>
         {pins}
         </MapView>
