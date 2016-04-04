@@ -100,7 +100,6 @@ class MapPage extends React.Component{
     return (
       <View style={styles.mainContainer}>
        <MapView
-        debugger
         style={styles.map}
         initialRegion={{
           latitude: 37.78825,
