@@ -1,6 +1,7 @@
 var React = require('react-native')
 var UserPage = require('./UserPage')
 var TripPage = require('./TripPage')
+var api = require('../Utils/api')
 
 var {
   StyleSheet,
@@ -68,8 +69,6 @@ var styles = StyleSheet.create({
   },
 });
 
-
-
 class Home extends React.Component{
     goToUserPage(){
       this.props.navigator.push({
@@ -77,12 +76,24 @@ class Home extends React.Component{
         component: UserPage
       });
     }
+
+
+
       newTrip(){
-      var pings = setInterval(function(){console.log('hi')}, 5000);
+      var pingList = []
+      var pings = setInterval(
+        function() {
+          navigator.geolocation.getCurrentPosition((position) => {
+          pingList.push(position.coords);
+          })
+        }, 5000);
       this.props.navigator.push({
         title: "Trip Page",
         component: TripPage,
-        passProps: {pings: pings}
+        passProps: {
+          pings: pings,
+          pingList: pingList
+          }
       });
     }
   render(){

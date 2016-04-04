@@ -1,0 +1,10 @@
+        function() {
+          navigator.geolocation.getCurrentPosition((position) => {
+            if (pingList === []){
+              pingList.push(position.coords);
+            } else if (Math.abs(Math.abs(pingList[pingList.length -1].latitude) - Math.abs(position.coords.latitude)) > .0001 || Math.abs(Math.abs(pingList[pingList.length -1].longitude) - Math.abs(position.coords.longitude)) > .0001) {
+
+
+          pingList.push(position.coords);
+          }})
+        }, 5000);

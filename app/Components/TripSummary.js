@@ -68,6 +68,7 @@ class TripSummary extends React.Component{
   }
 
   saveTrip(){
+    // send this.props.pingList to the database along with trip name with time acting as the id
     this.setState({
       isLoading: true
     });

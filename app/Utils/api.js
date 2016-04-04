@@ -17,7 +17,6 @@ var api = {
   checkUser(inputUsername){
     return fetch(`https://amber-torch-3121.firebaseio.com/${inputUsername}.json`).then((res) => res.json());
   },
-
 };
 
 module.exports = api;
