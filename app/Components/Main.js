@@ -130,7 +130,6 @@ class Main extends React.Component{
 
   render(){
     return (
-
       <Image source={require('../Images/paris.gif')} style={styles.backgroundImage}>
 
       <TextInput

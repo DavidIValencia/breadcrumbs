@@ -76,7 +76,8 @@ class TripPage extends React.Component{
     });
     this.props.navigator.push({
       title: "Map View",
-      component: MapPage
+      component: MapPage,
+      passProps: {trip: tripCrumbs}
     });
   }
 
@@ -91,14 +92,13 @@ class TripPage extends React.Component{
   }
 
   saveCrumb() {
-    navigator.geolocation.getCurrentPosition((position) => { 
+    navigator.geolocation.getCurrentPosition((position) => {
       tripCrumbs.push({
         title: this.state.title,
         note: this.state.note,
         tag: this.state.tag,
         pos: position
       });
-      debugger
     })
   }
 
