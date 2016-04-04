@@ -7,7 +7,7 @@ var {
   View,
   TouchableHighlight,
   ActivityIndicatorIOS,
-  TextInput
+  TextInput,
 } = React;
 
 var styles = StyleSheet.create({
@@ -61,8 +61,18 @@ var styles = StyleSheet.create({
   }
 });
 
-class MapPage extends React.Component{
+// debugger
+var marker = {
+  latlng: {
+    latitude: 37.78825,
+    longitude: -122.4324
+  },
+  title: 'Crumb Title!',
+  description: 'Heres a fun crumb!'
+};
 
+
+class MapPage extends React.Component{
   render(){
     return (
       <View style={styles.mainContainer}>
@@ -76,6 +86,8 @@ class MapPage extends React.Component{
         }}>
           <Mapview.Marker
             coordinate={marker.latlng}
+            title={marker.title}
+            description={marker.description}
           />
         </MapView>
       </View>

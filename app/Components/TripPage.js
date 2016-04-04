@@ -58,6 +58,15 @@ var styles = StyleSheet.create({
 
 class TripPage extends React.Component{
 
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     crumbs: {},
+  //     isLoading: false,
+  //     error: false,
+  //   }
+  // }
+
   goToMap(){
     this.setState({
       isLoading: true
@@ -77,6 +86,13 @@ class TripPage extends React.Component{
       component: TripSummary
     });
   }
+  //In progress
+  // saveCrumb(){
+  //   this.setState({
+  //     isLoading:true
+  //   });
+  //   api.saveCrumb(this.state.crumb)
+  // }
 
   render(){
     return (
