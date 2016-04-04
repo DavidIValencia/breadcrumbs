@@ -5,9 +5,9 @@ var api = require('../Utils/api')
 
 var {
   StyleSheet,
+  Image,
   Text,
   View,
-  Image,
   TouchableHighlight,
   AlertIOS,
   ActivityIndicatorIOS,

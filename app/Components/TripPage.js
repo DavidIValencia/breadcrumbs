@@ -58,7 +58,6 @@ var styles = StyleSheet.create({
 
 var tripCrumbs = []
 
-
 class TripPage extends React.Component{
 
   constructor(props){
@@ -74,13 +73,16 @@ class TripPage extends React.Component{
   }
 
   goToMap(){
+    console.log(this.props.pingList);
     this.setState({
       isLoading: true
     });
     this.props.navigator.push({
       title: "Map View",
       component: MapPage,
-      passProps: {trip: tripCrumbs}
+      passProps: {trip: tripCrumbs,
+        pingList: this.props.pingList,
+      }
     });
   }
 
@@ -90,7 +92,11 @@ class TripPage extends React.Component{
     });
     this.props.navigator.push({
       title: "Trip Summary",
-      component: TripSummary
+      component: TripSummary,
+      passProps: {
+        pingList: this.props.pingList,
+        pings: this.props.pings
+      }
     });
   }
 

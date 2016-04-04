@@ -21,7 +21,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
-*.xcodeproj
+*.xcodeproj/*
 
 # Android/IJ
 #
@@ -33,4 +33,5 @@ local.properties
 #
 ios/
 node_modules/
+ios/
 npm-debug.log

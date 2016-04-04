@@ -63,10 +63,16 @@ var styles = StyleSheet.create({
 
 class TripSummary extends React.Component{
 
+  constructor(props){
+    super(props);
+  }
+
   saveTrip(){
+    // send this.props.pingList to the database along with trip name with time acting as the id
     this.setState({
       isLoading: true
     });
+    clearInterval(this.props.pings);
     this.props.navigator.popN(2);
   }
 
