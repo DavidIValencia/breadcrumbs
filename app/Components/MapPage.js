@@ -83,6 +83,20 @@ class MapPage extends React.Component{
   };
 
   render(){
+    var pins = this.props.trip.map((marker,index) => {
+      return (
+        <MapView.Marker
+          coordinate={{
+            latitude: marker.pos.coords.latitude,
+            longitude: marker.pos.coords.longitude
+          }}
+          title={marker.title}
+          description={marker.note}
+          key={index}
+        />
+      )
+    });
+    
     return (
       <View style={styles.mainContainer}>
        <MapView
@@ -94,21 +108,12 @@ class MapPage extends React.Component{
           latitudeDelta: 0,
           longitudeDelta: 0
         }}>
-          {this.props.trip.map(marker => (
-          <MapView.Marker
-            coordinate={{
-              latitude: marker.pos.coords.latitude,
-              longitude: marker.pos.coords.longitude
-            }}
-            title={marker.title}
-            description={marker.note}
-          />
-          ))}
+        {pins}
         </MapView>
       </View>
     )
   }
-}
+};
 
 MapPage.propTypes = {
   trip: React.PropTypes.array.isRequired
