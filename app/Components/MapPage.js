@@ -67,8 +67,8 @@ var marker = {
     latitude: 37.78825,
     longitude: -122.4324
   },
-  title: 'keep slayin boi',
-  description: 'cant outstunt me when it comes to these fuckin cars'
+  title: 'Crumb Title!',
+  description: 'Heres a fun crumb!'
 };
 
 

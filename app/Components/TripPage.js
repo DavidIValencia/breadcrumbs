@@ -58,11 +58,10 @@ var styles = StyleSheet.create({
 
 class TripPage extends React.Component{
 
-  //In progress
   // constructor(props){
   //   super(props);
   //   this.state = {
-  //     crumb: {},
+  //     crumbs: {},
   //     isLoading: false,
   //     error: false,
   //   }
