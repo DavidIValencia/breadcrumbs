@@ -84,7 +84,7 @@ class MapPage extends React.Component{
           latitudeDelta: 0,
           longitudeDelta: 0
         }}>
-          <MapView.Marker
+          <Mapview.Marker
             coordinate={marker.latlng}
             title={marker.title}
             description={marker.description}

@@ -1,11 +1,14 @@
 var React = require('react-native')
 var Home = require('./Home')
+var Register = require('./Register')
+var api = require('../Utils/api')
 
 var {
   StyleSheet,
   Text,
   View,
   TouchableHighlight,
+  AlertIOS,
   ActivityIndicatorIOS,
   TextInput
 } = React;
@@ -13,11 +16,19 @@ var {
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    padding: 30,
-    marginTop: 65,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#48BBEC'
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+    padding: 10,
+    paddingTop: 80
+  },
+  input: {
+    height: 50,
+    marginTop: 10,
+    padding: 4,
+    fontSize: 18,
+    borderWidth: 1,
+    borderColor: '#48bbec'
   },
   title: {
     marginBottom: 20,
@@ -58,33 +69,65 @@ class Main extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      isLoading: false,
-      error: false
+      username: '',
+      passoword: ''
     }
   }
 
   handleSubmit(){
+    api.checkUser(this.state.name)
+    .then((res) => {
+      if(res.user.password !== this.state.password){
+        AlertIOS.alert(
+          'Incorrect Password'
+        )
+      } else {
+        this.props.navigator.push({
+        title: `Welcome ${this.state.name}`,
+        component: Home,
+        passProps: {username: this.state.name}
+        })
+      }
+    });
+  }
+
+  registerLink(){
     this.setState({
       isLoading: true
     });
     this.props.navigator.push({
-      title: "Home",
-      component: Home
+      title: "Register",
+      component: Register
     });
-
   }
 
   render(){
     return (
       <View style={styles.mainContainer}>
       <TextInput
-        style={styles.searchInput} />
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.handleSubmit.bind(this)}
-          underlayColor="green">
-            <Text style={styles.title}> BOOBS ( . ) ( . )</Text>
-          </TouchableHighlight>
+        onChangeText={ (text)=> this.setState({name: text}) }
+        style={styles.input} placeholder="Name">
+      </TextInput>
+      <TextInput
+        onChangeText={ (text)=> this.setState({password: text}) }
+        style={styles.input}
+        placeholder="Password"
+        secureTextEntry={true}>
+      </TextInput>
+      <TouchableHighlight
+        style={styles.button}
+        onPress={this.handleSubmit.bind(this)}
+        underlayColor="green">
+        <Text style={styles.buttonText}>
+          Login
+        </Text>
+      </TouchableHighlight>
+      <TouchableHighlight
+        style={styles.button}
+        onPress={this.registerLink.bind(this)}
+        underlayColor="green">
+          <Text style={styles.buttonText}>Register</Text>
+      </TouchableHighlight>
       </View>
       )
   }
