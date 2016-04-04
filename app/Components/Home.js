@@ -6,6 +6,7 @@ var {
   StyleSheet,
   Text,
   View,
+  Image,
   TouchableHighlight,
   ActivityIndicatorIOS,
   TextInput
@@ -26,6 +27,15 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff'
   },
+  backgroundImage: {
+    flex: 1,
+    // resizeMode: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // resizeMode: Image.resizeMode.contain,
+    width: null,
+    height: null,
+  },
   searchInput: {
     height: 50,
     padding: 4,
@@ -38,22 +48,27 @@ var styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: '#111',
+    color: 'white',
     alignSelf: 'center'
   },
   button: {
+    opacity: 0.5,
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
     marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
 });
+
+
 
 class Home extends React.Component{
     goToUserPage(){
@@ -63,25 +78,29 @@ class Home extends React.Component{
       });
     }
       newTrip(){
+      var pings = setInterval(function(){console.log('hi')}, 5000);
       this.props.navigator.push({
         title: "Trip Page",
-        component: TripPage
+        component: TripPage,
+        passProps: {pings: pings}
       });
     }
   render(){
     return (
-      <View style={styles.mainContainer}>
+      <Image source={require('../Images/bay-bridge-traffic.gif')} style={styles.backgroundImage}>
         <TouchableHighlight
+          style={styles.button}
           onPress={this.goToUserPage.bind(this)}
           underlayColor='#88D4F5'>
             <Text style={styles.buttonText}>Past Trips</Text>
         </TouchableHighlight>
         <TouchableHighlight
+          style={styles.button}
           onPress={this.newTrip.bind(this)}
           underlayColor='#88D4F5'>
             <Text style={styles.buttonText}>Start New Trip</Text>
         </TouchableHighlight>
-      </View>
+      </Image>
     )
   }
 }

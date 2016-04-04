@@ -58,7 +58,6 @@ var styles = StyleSheet.create({
 
 var tripCrumbs = []
 
-
 class TripPage extends React.Component{
 
   constructor(props){
@@ -87,7 +86,8 @@ class TripPage extends React.Component{
     });
     this.props.navigator.push({
       title: "Trip Summary",
-      component: TripSummary
+      component: TripSummary,
+      passProps: {pings: this.props.pings}
     });
   }
 

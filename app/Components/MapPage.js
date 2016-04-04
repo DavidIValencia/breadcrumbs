@@ -62,7 +62,7 @@ var styles = StyleSheet.create({
 });
 
 class MapPage extends React.Component{
-  
+
   constructor(props){
     super(props);
     this.state = {
@@ -71,16 +71,6 @@ class MapPage extends React.Component{
       error: false
     }
   }
-  
-  renderRow(rowData){
-    return (
-      <MapView.Marker
-        coordinate={marker.latlng}
-        title={marker.title}
-        description={marker.description}
-      />
-    )
-  };
 
   render(){
     var pins = this.props.trip.map((marker,index) => {
@@ -100,7 +90,6 @@ class MapPage extends React.Component{
     return (
       <View style={styles.mainContainer}>
        <MapView
-        debugger
         style={styles.map}
         initialRegion={{
           latitude: 37.78825,
