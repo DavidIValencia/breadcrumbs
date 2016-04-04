@@ -73,6 +73,7 @@ class MapPage extends React.Component{
   }
 
   render(){
+    debugger
     var pins = this.props.trip.map((marker,index) => {
       return (
         <MapView.Marker
