@@ -96,10 +96,9 @@ class MapPage extends React.Component{
         initialRegion={{
           latitude: 37.78825,
           longitude: -122.4324,
-          latitudeDelta: 0,
-          longitudeDelta: 0
+          latitudeDelta: 0.09,
+          longitudeDelta: 0.09
         }}>
-        //this block adds pins from an array
         {
           markers.map(marker => (
             <MapView.Marker
@@ -107,11 +106,9 @@ class MapPage extends React.Component{
                 latitude: marker.latitude,
                 longitude: marker.longitude
               }}
-              //add stuff here for title and description
             />
           ))
         }
-        //this line connects the pins
         <MapView.Polyline coordinates={markers} />
         </MapView>
       </View>
