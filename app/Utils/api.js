@@ -6,7 +6,7 @@ var api = {
     return fetch(url, {
       method: 'put',
       body: JSON.stringify({
-        user:{
+        info:{
               email: email,
               password: password,
             }
