@@ -92,7 +92,7 @@ class TripPage extends React.Component{
   }
 
   saveCrumb() {
-    navigator.geolocation.getCurrentPosition((position) => { 
+    navigator.geolocation.getCurrentPosition((position) => {
       tripCrumbs.push({
         title: this.state.title,
         note: this.state.note,

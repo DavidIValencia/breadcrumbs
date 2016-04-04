@@ -61,17 +61,6 @@ var styles = StyleSheet.create({
   }
 });
 
-// debugger
-var marker = {
-  latlng: {
-    latitude: 37.78825,
-    longitude: -122.4324
-  },
-  title: 'Crumb Title!',
-  description: 'Heres a fun crumb!'
-};
-
-
 class MapPage extends React.Component{
   
   constructor(props){
@@ -92,17 +81,20 @@ class MapPage extends React.Component{
       />
     )
   };
+
   render(){
     return (
       <View style={styles.mainContainer}>
        <MapView
+        debugger
         style={styles.map}
         initialRegion={{
           latitude: 37.78825,
           longitude: -122.4324,
           latitudeDelta: 0,
           longitudeDelta: 0
-        }}>{this.props.trip.map(marker => (
+        }}>
+          {this.props.trip.map(marker => (
           <MapView.Marker
             coordinate={{
               latitude: marker.pos.coords.latitude,
