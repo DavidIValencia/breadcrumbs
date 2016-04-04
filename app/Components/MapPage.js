@@ -73,11 +73,11 @@ class MapPage extends React.Component{
           longitude: -122.4324,
           latitudeDelta: 0,
           longitudeDelta: 0
-        }}
+        }}>
           <Mapview.Marker
             coordinate={marker.latlng}
           />
-        />
+        </MapView>
       </View>
     )
   }
