@@ -32,4 +32,5 @@ local.properties
 # node.js
 #
 node_modules/
+ios/
 npm-debug.log
