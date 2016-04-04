@@ -47,6 +47,9 @@ var styles = StyleSheet.create({
     borderRadius: 8,
     color: 'white'
   },
+  image: {
+    height: 250,
+  },
   buttonText: {
     fontSize: 18,
     color: '#111',
@@ -105,7 +108,9 @@ class Main extends React.Component{
   render(){
     return (
       <View style={styles.mainContainer}>
-      <Image source={{}} style={styles.image}/>
+      <Image
+        source={require('../Images/breadcrumbs_loaficonsolo-01.png')}
+        style={styles.image}/>
       <TextInput
         onChangeText={ (text)=> this.setState({name: text}) }
         style={styles.input} placeholder="Name">
