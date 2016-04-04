@@ -58,14 +58,14 @@ var styles = StyleSheet.create({
 
 class TripPage extends React.Component{
 
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     crumbs: {},
-  //     isLoading: false,
-  //     error: false,
-  //   }
-  // }
+  constructor(props){
+    super(props);
+    this.state = {
+      crumbs: {},
+      isLoading: false,
+      error: false
+    }
+  }
 
   goToMap(){
     this.setState({
