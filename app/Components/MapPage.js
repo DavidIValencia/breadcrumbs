@@ -1,4 +1,4 @@
-var React = require('react-native')
+  var React = require('react-native')
 var MapView = require('react-native-maps')
 
 var {
@@ -73,6 +73,16 @@ var marker = {
 
 
 class MapPage extends React.Component{
+  
+  constructor(props){
+    super(props);
+    this.state = {
+      crumbs: this.props.trip,
+      isLoading: false,
+      error: false
+    }
+  }
+  
   renderRow(rowData){
     return (
       <MapView.Marker
@@ -92,16 +102,24 @@ class MapPage extends React.Component{
           longitude: -122.4324,
           latitudeDelta: 0,
           longitudeDelta: 0
-        }}>
+        }}>{this.props.trip.map(marker => (
           <MapView.Marker
-            coordinate={marker.latlng}
+            coordinate={{
+              latitude: marker.pos.coords.latitude,
+              longitude: marker.pos.coords.longitude
+            }}
             title={marker.title}
-            description={marker.description}
+            description={marker.note}
           />
+          ))}
         </MapView>
       </View>
     )
   }
 }
+
+MapPage.propTypes = {
+  trip: React.PropTypes.array.isRequired
+};
 
 module.exports = MapPage;

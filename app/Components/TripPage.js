@@ -76,7 +76,8 @@ class TripPage extends React.Component{
     });
     this.props.navigator.push({
       title: "Map View",
-      component: MapPage
+      component: MapPage,
+      passProps: {trip: tripCrumbs}
     });
   }
 
@@ -98,8 +99,8 @@ class TripPage extends React.Component{
         tag: this.state.tag,
         pos: position
       });
-      debugger
     })
+    debugger
   }
 
   render(){
