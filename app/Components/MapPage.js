@@ -73,6 +73,15 @@ var marker = {
 
 
 class MapPage extends React.Component{
+  renderRow(rowData){
+    return (
+      <MapView.Marker
+        coordinate={marker.latlng}
+        title={marker.title}
+        description={marker.description}
+      />
+    )
+  };
   render(){
     return (
       <View style={styles.mainContainer}>
