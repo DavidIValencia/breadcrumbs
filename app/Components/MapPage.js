@@ -8,7 +8,6 @@ var {
   TouchableHighlight,
   ActivityIndicatorIOS,
   TextInput,
-  Image
 } = React;
 
 var styles = StyleSheet.create({
@@ -74,7 +73,6 @@ var marker = {
 
 
 class MapPage extends React.Component{
-  
   render(){
     return (
       <View style={styles.mainContainer}>
