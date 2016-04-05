@@ -1,4 +1,5 @@
 var React = require('react-native')
+var Separator = require('../Helpers/Separator')
 
 var {
   StyleSheet,
@@ -59,7 +60,9 @@ class PastTrips extends React.Component{
       <View>
         <View style={styles.rowContainer}>
           <Text> {rowData.name} </Text>
+          <Text> {rowData.description} </Text>
         </View>
+        <Separator />
       </View>
     )
   }
