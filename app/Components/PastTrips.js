@@ -1,4 +1,6 @@
 var React = require('react-native')
+var Separator = require('../Helpers/Separator')
+var Firebase = require('firebase')
 
 var {
   StyleSheet,
@@ -49,22 +51,58 @@ class PastTrips extends React.Component{
     this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
     this.state = {
       dataSource: this.ds.cloneWithRows(this.props.trips),
-      error: ''
+      error: '',
+      trips: []
     }
+    this.tripsRef = new Firebase(`https://amber-torch-3121.firebaseio.com/${this.props.username}/trips`);
   }
 
+
+  listenforTrips(tripsRef) {
+    tripsRef.on('value', (snap)=> {
+      snap.forEach((child)=> {
+        this.state.trips.push({
+          name: child.val().name,
+          description: child.val().description,
+          tags: child.val().tags,
+          timestamp: child.val().timestamp,
+          _key: child.key()
+        });
+      });
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(this.state.trips)
+      });
+    });
+      debugger
+  }
+
+  // viewTrip() {
+  //   var tripIndex = 
+  // }
+
+  componentDidMount() {
+    this.listenforTrips(this.tripsRef);
+  }
 
   renderRow(rowData){
     return (
       <View>
         <View style={styles.rowContainer}>
-          <Text> {rowData.name} </Text>
+          <TouchableHighlight
+            style={styles.button}
+            // onPress={this.viewTrip.bind(this)}
+            underlayColor="#88D4F5">
+            <Text> {rowData.name} </Text>
+          </TouchableHighlight>
+          <Text> {rowData.description} </Text>
         </View>
+        <Separator />
       </View>
     )
   }
 
   render(){
+    debugger
     return (
       <View style={styles.container}>
           <ListView

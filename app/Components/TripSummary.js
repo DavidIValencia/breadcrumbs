@@ -79,11 +79,13 @@ class TripSummary extends React.Component{
 
   saveTrip(){
    var trip = {}
-   trip.name = this.props.name
-   trip.description = this.props.description
-   trip.tags = this.props.tags
+   trip.name = this.state.name
+   trip.description = this.state.description
+   trip.tags = this.state.tags
+   trip.timestamp = this.props.crumbs[this.props.crumbs.length - 1].timestamp
    trip.crumbs = this.props.crumbs
    trip.pingList = this.props.pingList
+   debugger
     this.setState({
       isLoading: true
     });
