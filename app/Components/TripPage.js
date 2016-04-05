@@ -172,22 +172,27 @@ class TripPage extends React.Component{
           style={styles.input}
           placeholder="Add Title"
           placeholderTextColor="white"
-          secureTextEntry={true}>
+          secureTextEntry={false}>
         </TextInput>
 
-        <Text>Add Note</Text>
-
         <TextInput
-          style={styles.searchInput}
           value={this.state.note}
-          onChangeText={ (text)=> this.setState({note: text}) } />
+          onChangeText={ (text)=> this.setState({note: text}) } 
+          style={styles.input}
+          placeholder="Add Note"
+          placeholderTextColor="white"
+          secureTextEntry={false}>
+        </TextInput>
 
-        <Text>Add Tags</Text>
 
         <TextInput
-          style={styles.searchInput}
           value={this.state.tag}
-          onChangeText={ (text)=> this.setState({tag: text}) } />
+          onChangeText={ (text)=> this.setState({tag: text}) } 
+          style={styles.input}
+          placeholder="Add Tags"
+          placeholderTextColor="white"
+          secureTextEntry={false}>
+        </TextInput>
 
           <TouchableHighlight
             style={styles.button}
