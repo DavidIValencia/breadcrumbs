@@ -65,7 +65,10 @@ class TripPage extends React.Component{
     this.state = {
       crumbs: {},
       isLoading: false,
-      error: false
+      error: false,
+      title: '',
+      note: '',
+      tag: '',
     }
   }
 
@@ -97,13 +100,18 @@ class TripPage extends React.Component{
     });
   }
 
-  saveCrumb() {
+  saveCrumb(event) {
       navigator.geolocation.getCurrentPosition((position) => {
       tripCrumbs.push({
         title: this.state.title,
         note: this.state.note,
         tag: this.state.tag,
         pos: position
+      });
+      this.setState({
+        title: '',
+        note: '',
+        tag: ''
       });
     })
   };
@@ -120,14 +128,17 @@ class TripPage extends React.Component{
         <Text>Add Title</Text>
         <TextInput
           style={styles.searchInput}
+          value={this.state.title}
           onChangeText={ (text)=> this.setState({title: text}) } />
         <Text>Add Note</Text>
         <TextInput
           style={styles.searchInput}
+          value={this.state.note}
           onChangeText={ (text)=> this.setState({note: text}) } />
         <Text>Add Tags</Text>
         <TextInput
           style={styles.searchInput}
+          value={this.state.tag}
           onChangeText={ (text)=> this.setState({tag: text}) } />
           <TouchableHighlight
             style={styles.button}

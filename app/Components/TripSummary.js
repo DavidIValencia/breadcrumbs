@@ -76,6 +76,7 @@ class TripSummary extends React.Component{
     this.props.navigator.popN(2);
   }
 
+
   render(){
     return (
       <View style={styles.mainContainer}>
