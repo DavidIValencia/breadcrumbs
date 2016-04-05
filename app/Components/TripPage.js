@@ -38,7 +38,7 @@ var styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
-    color: '#fff'
+    color: 'white'
   },
   searchInput: {
     height: 50,
@@ -72,6 +72,25 @@ var styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
   },
+
+  input: {
+    height: 50,
+    marginTop: 10,
+    padding: 4,
+    fontSize: 18,
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
+    color: 'white',
+    backgroundColor: 'black',
+    opacity: 0.5,
+
+  },
+
 });
 
 var tripCrumbs = []
@@ -147,7 +166,6 @@ class TripPage extends React.Component{
         </TouchableHighlight>
 
        
-        
         <TextInput
           value={this.state.title}
           onChangeText={ (text)=> this.setState({title: text}) } 
