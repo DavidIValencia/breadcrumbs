@@ -118,13 +118,12 @@ class MapPage extends React.Component{
 
   // good place for debugger is just inside render
   render(){
-    debugger
     var pins = this.props.crumbs.map((marker,index) => {
       return (
         <MapView.Marker
           coordinate={{
-            latitude: parseFloat(marker.pos.coords.latitude.toString()),
-            longitude: parseFloat(marker.pos.coords.longitude.toString())
+            latitude: marker.pos.coords.latitude,
+            longitude: marker.pos.coords.longitude
           }}
           title={marker.title}
           description={marker.note}

@@ -99,7 +99,6 @@ class Home extends React.Component{
   newTrip(){
     var pingList = [];
     var pings = function() {
-        console.log('dicks')
         navigator.geolocation.getCurrentPosition(
           (position)=> {
             var initialPosition = position;

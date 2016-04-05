@@ -73,7 +73,6 @@ class PastTrips extends React.Component{
         dataSource: this.state.dataSource.cloneWithRows(this.state.trips)
       });
     });
-      debugger
   }
 
   // viewTrip() {
@@ -100,6 +99,33 @@ class PastTrips extends React.Component{
       </View>
     )
   }
+
+  // <Image source={require('../Images/India.gif')} style={styles.backgroundImage}>
+
+  //       <TextInput
+  //         onChangeText={ (text)=> this.setState({email: text}) }
+  //         style={styles.input} placeholder="Email"
+  //         placeholderTextColor="white">
+  //       </TextInput>
+
+  //       <TextInput
+  //         onChangeText={ (text)=> this.setState({name: text}) }
+  //         style={styles.input} placeholder="Name"
+  //         placeholderTextColor="white">
+  //       </TextInput>
+  //       <TextInput
+  //         onChangeText={ (text)=> this.setState({password: text}) }
+  //         style={styles.input}
+  //         placeholder="Password"
+  //         placeholderTextColor="white"
+  //         secureTextEntry={true}>
+  //       </TextInput>
+
+  //       <TouchableHighlight onPress={this.onRegisterPressed.bind(this)} style={styles.button}>
+  //         <Text style={styles.buttonText}>
+  //           Submit
+  //         </Text>
+  //       </TouchableHighlight>
 
   render(){
     debugger
