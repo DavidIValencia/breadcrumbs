@@ -6,6 +6,7 @@
 // Delete
 
 var React = require('react-native')
+var api = require('../Utils/api')
 
 var {
   StyleSheet,
@@ -65,13 +66,31 @@ class TripSummary extends React.Component{
 
   constructor(props){
     super(props);
+    this.state = {
+      isLoading: false,
+      error: false,
+      crumbs: this.props.crumbs,
+      pingList: this.props.pingList,
+      name: '',
+      description: '',
+      tags: ''
+    }
   }
 
   saveTrip(){
-    // send this.props.pingList to the database along with trip name with time acting as the id
+   var trip = {}
+   trip.name = this.props.name
+   trip.description = this.props.description
+   trip.tags = this.props.tags
+   trip.crumbs = this.props.crumbs
+   trip.pingList = this.props.pingList
     this.setState({
       isLoading: true
     });
+    api.addTrip(this.props.username, trip)
+      .then((data) => {
+        this.props.crumbs.length = 0
+      });
     clearInterval(this.props.pings);
     this.props.navigator.popN(2);
   }
@@ -88,13 +107,22 @@ class TripSummary extends React.Component{
         </TouchableHighlight>
         <Text>Name Trip</Text>
         <TextInput
-          style={styles.searchInput} />
+          style={styles.searchInput}
+          value={this.props.name}
+          onChangeText={ (text)=> this.setState({name: text}) }>
+        </TextInput>
         <Text>Description</Text>
         <TextInput
-          style={styles.searchInput} />
+          style={styles.searchInput}
+          value={this.props.description}
+          onChangeText={ (text)=> this.setState({description: text}) }>
+          </TextInput>
         <Text>Add Tags</Text>
         <TextInput
-          style={styles.searchInput} />
+          style={styles.searchInput}
+          value={this.props.tags}
+          onChangeText={ (text)=> this.setState({tags: text}) }>
+          </TextInput>
           <TouchableHighlight
             style={styles.button}
             onPress={() => AlertIOS.alert(
