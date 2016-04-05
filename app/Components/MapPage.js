@@ -117,7 +117,7 @@ class MapPage extends React.Component{
 
 
   render(){
-    var pins = someCoords.map((marker,index) => {
+    var pins = this.props.trip.map((marker,index) => {
       return (
         <MapView.Marker
           coordinate={{
@@ -142,7 +142,7 @@ class MapPage extends React.Component{
           longitudeDelta: 0.09
         }}>
         {pins}
-          <MapView.Polyline coordinates={drawLines(someCoords)}
+          <MapView.Polyline coordinates={drawLines(this.props.trip)}
             strokeWidth={4}
             strokeColor={'#0000FF'}
             geodesic={true}
