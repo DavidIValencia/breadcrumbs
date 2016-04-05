@@ -47,6 +47,7 @@ class Register extends React.Component {
           style={styles.input} placeholder="Email"
           placeholderTextColor="white">
         </TextInput>
+
         <TextInput
           onChangeText={ (text)=> this.setState({name: text}) }
           style={styles.input} placeholder="Name"
@@ -59,6 +60,7 @@ class Register extends React.Component {
           placeholderTextColor="white"
           secureTextEntry={true}>
         </TextInput>
+
         <TouchableHighlight onPress={this.onRegisterPressed.bind(this)} style={styles.button}>
           <Text style={styles.buttonText}>
             Submit

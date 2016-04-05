@@ -134,19 +134,18 @@ class Main extends React.Component{
     return (
       <Image source={require('../Images/big-bin-gif.gif')} style={styles.backgroundImage}>
 
-      <TextInput
-        onChangeText={ (text)=> this.setState({name: text}) }
-        style={styles.input} placeholder="Name">
-      </TextInput>
-
-
-
-      <TextInput
-        onChangeText={ (text)=> this.setState({password: text}) }
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry={true}>
-      </TextInput>
+        <TextInput
+          onChangeText={ (text)=> this.setState({name: text}) }
+          style={styles.input} placeholder="Name"
+          placeholderTextColor="white">
+        </TextInput>
+        <TextInput
+          onChangeText={ (text)=> this.setState({password: text}) }
+          style={styles.input}
+          placeholder="Password"
+          placeholderTextColor="white"
+          secureTextEntry={true}>
+        </TextInput>
 
       <TouchableHighlight
         style={styles.button}
