@@ -97,12 +97,12 @@ class Main extends React.Component{
     super(props);
     this.state = {
       username: '',
-      passoword: ''
+      password: ''
     }
   }
 
   handleSubmit(){
-    api.checkUser(this.state.name)
+    api.checkUser(this.state.username)
     .then((res) => {
       if(res.info.password !== this.state.password){
         AlertIOS.alert(
@@ -110,9 +110,9 @@ class Main extends React.Component{
         )
       } else {
         this.props.navigator.push({
-        title: `Welcome ${this.state.name}`,
+        title: `Welcome ${this.state.username}`,
         component: Home,
-        passProps: {username: this.state.name}
+        passProps: {username: this.state.username}
         })
       }
     });
@@ -133,7 +133,7 @@ class Main extends React.Component{
       <Image source={require('../Images/paris.gif')} style={styles.backgroundImage}>
 
       <TextInput
-        onChangeText={ (text)=> this.setState({name: text}) }
+        onChangeText={ (text)=> this.setState({username: text}) }
         style={styles.input} placeholder="Name">
       </TextInput>
       <TextInput

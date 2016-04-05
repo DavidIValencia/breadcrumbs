@@ -1,5 +1,5 @@
 var React = require('react-native')
-var UserPage = require('./UserPage')
+var PastTrips = require('./PastTrips')
 var TripPage = require('./TripPage')
 var api = require('../Utils/api')
 
@@ -70,10 +70,13 @@ var styles = StyleSheet.create({
 });
 
 class Home extends React.Component{
-    goToUserPage(){
+    goToPastTrips(){
       this.props.navigator.push({
         title: "Past Trips",
-        component: UserPage
+        component: PastTrips,
+        passProps: {
+          username: this.props.username
+        }
       });
     }
 
@@ -92,7 +95,8 @@ class Home extends React.Component{
         component: TripPage,
         passProps: {
           pings: pings,
-          pingList: pingList
+          pingList: pingList,
+          username: this.props.username
           }
       });
     }
@@ -101,7 +105,7 @@ class Home extends React.Component{
       <Image source={require('../Images/bay-bridge-traffic.gif')} style={styles.backgroundImage}>
         <TouchableHighlight
           style={styles.button}
-          onPress={this.goToUserPage.bind(this)}
+          onPress={this.goToPastTrips.bind(this)}
           underlayColor='#88D4F5'>
             <Text style={styles.buttonText}>Past Trips</Text>
         </TouchableHighlight>

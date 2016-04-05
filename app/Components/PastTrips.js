@@ -6,7 +6,8 @@ var {
   View,
   TouchableHighlight,
   ActivityIndicatorIOS,
-  TextInput
+  TextInput,
+  ListView
 } = React;
 
 var styles = StyleSheet.create({
@@ -45,42 +46,36 @@ var styles = StyleSheet.create({
 class PastTrips extends React.Component{
   constructor(props){
     super(props);
-    this.ds = new Listview.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
+    this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
     this.state = {
       dataSource: this.ds.cloneWithRows(this.props.notes),
-      trip: '',
       error: ''
     }
-  }
-  handleChange(e){
-    this.setState({
-      trip: e.nativeEvent.text
-    })
-  }
-  handleSubmit(){
-    var trip = this.state.trip;
-    this.setState({
-      trip: ''
-    });
-    api.addTrip(this.props.userName, trip)
+    api.getTrips(this.props.username)
       .then((data)=> {
-        api.getTrips(this.props.userName)
-          .then((data)=> {
-            this.setState({
-              dataSource:this.ds.cloneWithRows(data)
-            })
-          });
+        this.setState({
+          dataSource: this.ds.cloneWithRows(data)
+        })
       })
       .catch((error)=> {
         console.log('Request failed', error);
         this.setState({error})
       });
   }
+  // handleChange(e){
+  //   this.setState({
+  //     trip: e.nativeEvent.text
+  //   })
+  // }
+
+
+
   renderRow(rowData){
     return (
       <View>
         <View style={styles.rowContainer}>
           <Text> {rowData} </Text>
+        </View>
       </View>
     )
   }
