@@ -63,7 +63,6 @@ class TripPage extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      crumbs: {},
       isLoading: false,
       error: false,
       title: '',
@@ -80,7 +79,7 @@ class TripPage extends React.Component{
     this.props.navigator.push({
       title: "Map View",
       component: MapPage,
-      passProps: {trip: tripCrumbs,
+      passProps: {crumbs: tripCrumbs,
         pingList: this.props.pingList,
       }
     });
@@ -95,7 +94,9 @@ class TripPage extends React.Component{
       component: TripSummary,
       passProps: {
         pingList: this.props.pingList,
-        pings: this.props.pings
+        crumbs: tripCrumbs,
+        pings: this.props.pings,
+        username: this.props.username
       }
     });
   }
