@@ -1,5 +1,6 @@
 var React = require('react-native')
 var Separator = require('../Helpers/Separator')
+var Firebase = require('firebase')
 
 var {
   StyleSheet,
@@ -51,24 +52,37 @@ class PastTrips extends React.Component{
     this.state = {
       dataSource: this.ds.cloneWithRows(this.props.trips),
       error: '',
-      selectedTrip: {}
+      trips: []
     }
+    this.tripsRef = new Firebase(`https://amber-torch-3121.firebaseio.com/${this.props.username}/trips`);
   }
 
-  viewTrip(){
-    this.setState({
-      selectedTrip
-    })
-    var trip = {}
-    api.getTrips(this.props.username)
-      .then((data)=> {
-        for (var i = 0; i < data.length; i++){
-          if (data[i].name ===  )
-        }
 
-      })
+  listenforTrips(tripsRef) {
+    tripsRef.on('value', (snap)=> {
+      snap.forEach((child)=> {
+        this.state.trips.push({
+          name: child.val().name,
+          description: child.val().description,
+          tags: child.val().tags,
+          timestamp: child.val().timestamp,
+          _key: child.key()
+        });
+      });
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(this.state.trips)
+      });
+    });
+      debugger
   }
 
+  // viewTrip() {
+  //   var tripIndex = 
+  // }
+
+  componentDidMount() {
+    this.listenforTrips(this.tripsRef);
+  }
 
   renderRow(rowData){
     return (
@@ -76,11 +90,11 @@ class PastTrips extends React.Component{
         <View style={styles.rowContainer}>
           <TouchableHighlight
             style={styles.button}
-            onPress={this.viewTrip.bind(this)}
+            // onPress={this.viewTrip.bind(this)}
             underlayColor="#88D4F5">
-              <Text> {rowData.name} </Text>
-              <Text> {rowData.description} </Text>
+            <Text> {rowData.name} </Text>
           </TouchableHighlight>
+          <Text> {rowData.description} </Text>
         </View>
         <Separator />
       </View>
