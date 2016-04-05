@@ -52,15 +52,6 @@ class PastTrips extends React.Component{
       error: ''
     }
   }
-  // handleChange(e){
-  //   this.setState({
-  //     trip: e.nativeEvent.text
-  //   })
-  // }
-    //   this.setState({
-    //     dataSource: this.ds.cloneWithRows(data)
-    //   })
-    // })
 
 
   renderRow(rowData){
