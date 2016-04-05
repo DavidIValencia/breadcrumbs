@@ -39,6 +39,7 @@ var styles = StyleSheet.create({
     paddingTop: 80
   },
   input: {
+
     height: 50,
     marginTop: 10,
     padding: 4,
@@ -74,6 +75,7 @@ var styles = StyleSheet.create({
   },
 
   textInput: {
+
     height: 50,
     padding: 20,
     marginRight: 5,
