@@ -83,15 +83,19 @@ class Home extends React.Component{
       }
     })
   })
-} 
-  
+}
+
 
   newTrip(){
     var pingList = []
     var pings = setInterval(
       function() {
         navigator.geolocation.getCurrentPosition((position) => {
-        pingList.push(position.coords);
+          console.log(position)
+        pingList.push({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        });
         })
       }, 5000);
     this.props.navigator.push({
