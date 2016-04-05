@@ -101,12 +101,12 @@ class Main extends React.Component{
     super(props);
     this.state = {
       username: '',
-      passoword: ''
+      password: ''
     }
   }
 
   handleSubmit(){
-    api.checkUser(this.state.name)
+    api.checkUser(this.state.username)
     .then((res) => {
       if(res.info.password !== this.state.password){
         AlertIOS.alert(
@@ -114,9 +114,9 @@ class Main extends React.Component{
         )
       } else {
         this.props.navigator.push({
-        title: `Welcome ${this.state.name}`,
+        title: `Welcome ${this.state.username}`,
         component: Home,
-        passProps: {username: this.state.name}
+        passProps: {username: this.state.username}
         })
       }
     });
@@ -137,7 +137,7 @@ class Main extends React.Component{
       <Image source={require('../Images/big-bin-gif.gif')} style={styles.backgroundImage}>
 
         <TextInput
-          onChangeText={ (text)=> this.setState({name: text}) }
+          onChangeText={ (text)=> this.setState({username: text}) }
           style={styles.input} placeholder="Name"
           placeholderTextColor="white">
         </TextInput>
@@ -148,7 +148,6 @@ class Main extends React.Component{
           placeholderTextColor="white"
           secureTextEntry={true}>
         </TextInput>
-
       <TouchableHighlight
         style={styles.button}
         onPress={this.handleSubmit.bind(this)}

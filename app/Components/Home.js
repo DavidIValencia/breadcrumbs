@@ -1,5 +1,5 @@
 var React = require('react-native')
-var UserPage = require('./UserPage')
+var PastTrips = require('./PastTrips')
 var TripPage = require('./TripPage')
 var api = require('../Utils/api')
 
@@ -70,38 +70,47 @@ var styles = StyleSheet.create({
 });
 
 class Home extends React.Component{
-    goToUserPage(){
-      this.props.navigator.push({
-        title: "Past Trips",
-        component: UserPage
-      });
-    }
+  goToPastTrips(){
+   api.getTrips(this.props.username)
+    .then((data)=> {
+      data = data || {};
+    this.props.navigator.push({
+      title: "Past Trips",
+      component: PastTrips,
+      passProps: {
+        username: this.props.username,
+        trips: data
+      }
+    })
+  })
+} 
+  
 
+  newTrip(){
+    var pingList = []
+    var pings = setInterval(
+      function() {
+        navigator.geolocation.getCurrentPosition((position) => {
+        pingList.push(position.coords);
+        })
+      }, 5000);
+    this.props.navigator.push({
+      title: "Trip Page",
+      component: TripPage,
+      passProps: {
+        pings: pings,
+        pingList: pingList,
+        username: this.props.username
+        }
+    });
+  }
 
-
-      newTrip(){
-      var pingList = []
-      var pings = setInterval(
-        function() {
-          navigator.geolocation.getCurrentPosition((position) => {
-          pingList.push(position.coords);
-          })
-        }, 5000);
-      this.props.navigator.push({
-        title: "Trip Page",
-        component: TripPage,
-        passProps: {
-          pings: pings,
-          pingList: pingList
-          }
-      });
-    }
   render(){
     return (
       <Image source={require('../Images/bay-bridge-traffic.gif')} style={styles.backgroundImage}>
         <TouchableHighlight
           style={styles.button}
-          onPress={this.goToUserPage.bind(this)}
+          onPress={this.goToPastTrips.bind(this)}
           underlayColor='#88D4F5'>
             <Text style={styles.buttonText}>Past Trips</Text>
         </TouchableHighlight>

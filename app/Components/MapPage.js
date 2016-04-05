@@ -1,4 +1,4 @@
-  var React = require('react-native')
+var React = require('react-native')
 var MapView = require('react-native-maps')
 
 var {
@@ -66,7 +66,7 @@ class MapPage extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      crumbs: this.props.trip,
+      crumbs: this.props.crumbs,
       isLoading: false,
       error: false
     }
@@ -74,7 +74,7 @@ class MapPage extends React.Component{
 
   render(){
     debugger
-    var pins = this.props.trip.map((marker,index) => {
+    var pins = this.props.crumbs.map((marker,index) => {
       return (
         <MapView.Marker
           coordinate={{
@@ -106,7 +106,7 @@ class MapPage extends React.Component{
 };
 
 MapPage.propTypes = {
-  trip: React.PropTypes.array.isRequired
+  crumbs: React.PropTypes.array.isRequired
 };
 
 module.exports = MapPage;
