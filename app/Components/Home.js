@@ -30,12 +30,14 @@ var styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    // resizeMode: 'stretch',
+    resizeMode: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
-    // resizeMode: Image.resizeMode.contain,
+    resizeMode: Image.resizeMode.contain,
     width: null,
     height: null,
+    resizeMode: 'stretch'
+
   },
   searchInput: {
     height: 50,
@@ -87,19 +89,19 @@ class Home extends React.Component{
   
 
   newTrip(){
-    var pingList = []
-    var pings = setInterval(
-      function() {
-        navigator.geolocation.getCurrentPosition((position) => {
-        pingList.push(position.coords);
-        })
-      }, 5000);
+    // var pingList = []
+    // var pings = setInterval(
+    //   function() {
+    //     navigator.geolocation.getCurrentPosition((position) => {
+    //     pingList.push(position.coords);
+    //     })
+    //   }, 5000);
     this.props.navigator.push({
       title: "Trip Page",
       component: TripPage,
       passProps: {
-        pings: pings,
-        pingList: pingList,
+        // pings: pings,
+        // pingList: pingList,
         username: this.props.username
         }
     });

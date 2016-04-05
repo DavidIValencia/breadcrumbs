@@ -9,7 +9,8 @@ var {
   TouchableHighlight,
   ActivityIndicatorIOS,
   TextInput,
-  ListView
+  ListView,
+  Image,
 } = React;
 
 var styles = StyleSheet.create({
@@ -21,6 +22,17 @@ var styles = StyleSheet.create({
     fontSize: 18,
     color: 'white'
   },
+
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // resizeMode: Image.resizeMode.contain,
+    width: null,
+    height: null,
+  },
+
   button: {
     height: 60,
     backgroundColor: '#48BBEC',
@@ -38,11 +50,11 @@ var styles = StyleSheet.create({
   rowContainer: {
     padding: 10,
   },
-  footerContainer: {
-    backgroundColor: '#E3E3E3',
-    alignItems: 'center',
-    flexDirection: 'row'
-  }
+  // footerContainer: {
+  //   backgroundColor: '#E3E3E3',
+  //   alignItems: 'center',
+  //   flexDirection: 'row'
+  // }
 });
 
 class PastTrips extends React.Component{
@@ -86,18 +98,20 @@ class PastTrips extends React.Component{
 
   renderRow(rowData){
     return (
-      <View>
-        <View style={styles.rowContainer}>
-          <TouchableHighlight
-            style={styles.button}
-            // onPress={this.viewTrip.bind(this)}
-            underlayColor="#88D4F5">
-            <Text> {rowData.name} </Text>
-          </TouchableHighlight>
-          <Text> {rowData.description} </Text>
-        </View>
-        <Separator />
-      </View>
+      <Image source={require('../Images/bay-bridge-traffic.gif')} style={styles.backgroundImage}>
+
+
+            <TouchableHighlight
+              style={styles.button}
+              // onPress={this.viewTrip.bind(this)}
+              underlayColor="#88D4F5">
+              <Text> {rowData.name} </Text>
+            </TouchableHighlight>
+            <Text> {rowData.description} </Text>
+
+          <Separator />
+
+      </Image>
     )
   }
 
