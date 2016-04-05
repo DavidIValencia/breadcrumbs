@@ -105,6 +105,7 @@ class TripPage extends React.Component{
       title: '',
       note: '',
       tag: '',
+      lastPosition: this.props.lastPosition
     }
   }
 
@@ -133,26 +134,26 @@ class TripPage extends React.Component{
         pingList: this.props.pingList,
         crumbs: tripCrumbs,
         pings: this.props.pings,
-        username: this.props.username
+        username: this.props.username,
+        watchID: this.props.watchID,
+        lastPosition: this.state.lastPosition
       }
     });
   }
 
   saveCrumb(event) {
-      navigator.geolocation.getCurrentPosition((position) => {
       tripCrumbs.push({
         title: this.state.title,
         note: this.state.note,
         tag: this.state.tag,
-        pos: position
+        pos: this.props.pingList[this.props.pingList.length - 1]
       });
       this.setState({
         title: '',
         note: '',
         tag: ''
       });
-    })
-  };
+    };
 
   render(){
     return (
