@@ -58,8 +58,51 @@ var styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0
-  }
+  },
 });
+
+// this variable is for testing
+var someCoords = [
+  {
+    pos: {
+      coords: {
+        latitude: 37.79205,
+        longitude: -122.4211383,
+      }
+    },
+    monique: "she's here"
+  },
+  {
+    pos: {
+      coords: {
+        latitude: 37.7911004,
+        longitude: -122.4429393,
+      }
+    },
+    jordan: "he's here, too"
+  },
+  {
+    pos: {
+      coords: {
+        latitude: 37.778958,
+        longitude: -122.4386047,
+      }
+    },
+    kyle: 'cierzan'
+  },
+];
+
+// this function returns a data collection that MapView.Polyline can digest
+// as an argument, it takes the same thing we call .map on for the markers
+var drawLines = function(someCoords){
+  var lineCoords = [];
+  someCoords.forEach(function(element){
+    lineCoords.push(element)
+  });
+  return (
+    lineCoords
+  );
+}
 
 class MapPage extends React.Component{
 
@@ -72,14 +115,15 @@ class MapPage extends React.Component{
     }
   }
 
+  // good place for debugger is just inside render
   render(){
     debugger
     var pins = this.props.crumbs.map((marker,index) => {
       return (
         <MapView.Marker
           coordinate={{
-            latitude: marker.pos.coords.latitude,
-            longitude: marker.pos.coords.longitude
+            latitude: parseFloat(marker.pos.coords.latitude.toString()),
+            longitude: parseFloat(marker.pos.coords.longitude.toString())
           }}
           title={marker.title}
           description={marker.note}
@@ -99,6 +143,11 @@ class MapPage extends React.Component{
           longitudeDelta: 0.09
         }}>
         {pins}
+          <MapView.Polyline coordinates={drawLines(this.props.pingList)}
+            strokeWidth={4}
+            strokeColor={'#0000FF'}
+            geodesic={true}
+          />
         </MapView>
       </View>
     )
