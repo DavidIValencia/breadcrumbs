@@ -48,34 +48,37 @@ class PastTrips extends React.Component{
     super(props);
     this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
     this.state = {
-      dataSource: this.ds.cloneWithRows(this.props.notes),
+      dataSource: this.ds.cloneWithRows(this.props.trips),
       error: ''
     }
-    api.getTrips(this.props.username)
-      .then((data)=> {
-        this.setState({
-          dataSource: this.ds.cloneWithRows(data)
-        })
-      })
-      .catch((error)=> {
-        console.log('Request failed', error);
-        this.setState({error})
-      });
   }
   // handleChange(e){
   //   this.setState({
   //     trip: e.nativeEvent.text
   //   })
   // }
-
+    //   this.setState({
+    //     dataSource: this.ds.cloneWithRows(data)
+    //   })
+    // })
 
 
   renderRow(rowData){
     return (
       <View>
         <View style={styles.rowContainer}>
-          <Text> {rowData} </Text>
+          <Text> {rowData.name} </Text>
         </View>
+      </View>
+    )
+  }
+
+  render(){
+    return (
+      <View style={styles.container}>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow} />
       </View>
     )
   }

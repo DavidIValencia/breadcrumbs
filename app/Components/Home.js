@@ -70,36 +70,41 @@ var styles = StyleSheet.create({
 });
 
 class Home extends React.Component{
-    goToPastTrips(){
-      this.props.navigator.push({
-        title: "Past Trips",
-        component: PastTrips,
-        passProps: {
-          username: this.props.username
+  goToPastTrips(){
+   api.getTrips(this.props.username)
+    .then((data)=> {
+      data = data || {};
+    this.props.navigator.push({
+      title: "Past Trips",
+      component: PastTrips,
+      passProps: {
+        username: this.props.username,
+        trips: data
+      }
+    })
+  })
+} 
+  
+
+  newTrip(){
+    var pingList = []
+    var pings = setInterval(
+      function() {
+        navigator.geolocation.getCurrentPosition((position) => {
+        pingList.push(position.coords);
+        })
+      }, 5000);
+    this.props.navigator.push({
+      title: "Trip Page",
+      component: TripPage,
+      passProps: {
+        pings: pings,
+        pingList: pingList,
+        username: this.props.username
         }
-      });
-    }
+    });
+  }
 
-
-
-      newTrip(){
-      var pingList = []
-      var pings = setInterval(
-        function() {
-          navigator.geolocation.getCurrentPosition((position) => {
-          pingList.push(position.coords);
-          })
-        }, 5000);
-      this.props.navigator.push({
-        title: "Trip Page",
-        component: TripPage,
-        passProps: {
-          pings: pings,
-          pingList: pingList,
-          username: this.props.username
-          }
-      });
-    }
   render(){
     return (
       <Image source={require('../Images/bay-bridge-traffic.gif')} style={styles.backgroundImage}>
