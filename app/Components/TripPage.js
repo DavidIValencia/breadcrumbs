@@ -68,6 +68,7 @@ class TripPage extends React.Component{
       title: '',
       note: '',
       tag: '',
+      lastPosition: this.props.lastPosition
     }
   }
 
@@ -96,7 +97,9 @@ class TripPage extends React.Component{
         pingList: this.props.pingList,
         crumbs: tripCrumbs,
         pings: this.props.pings,
-        username: this.props.username
+        username: this.props.username,
+        watchID: this.props.watchID,
+        lastPosition: this.state.lastPosition
       }
     });
   }

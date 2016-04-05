@@ -73,7 +73,8 @@ class TripSummary extends React.Component{
       pingList: this.props.pingList,
       name: '',
       description: '',
-      tags: ''
+      tags: '',
+      lastPosition: this.props.lastPosition
     }
   }
 
@@ -93,10 +94,9 @@ class TripSummary extends React.Component{
       .then((data) => {
         this.props.crumbs.length = 0
       });
-    clearInterval(this.props.pings);
+    navigator.geolocationclearWatch(this.props.watchID);
     this.props.navigator.popN(2);
   }
-
 
   render(){
     return (

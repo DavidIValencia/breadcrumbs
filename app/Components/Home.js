@@ -70,6 +70,16 @@ var styles = StyleSheet.create({
 });
 
 class Home extends React.Component{
+  
+  constructor(props){
+    super(props);
+    watchID: (null: ?number),
+    this.state = {
+      initialPosition: {},
+      lastPosition: {}
+    }
+  }
+
   goToPastTrips(){
    api.getTrips(this.props.username)
     .then((data)=> {
@@ -79,28 +89,43 @@ class Home extends React.Component{
       component: PastTrips,
       passProps: {
         username: this.props.username,
-        trips: data
+        trips: data,
+        lastPosition: this.state.lastPosition
       }
     })
   })
 } 
-  
 
   newTrip(){
-    var pingList = []
-    var pings = setInterval(
-      function() {
-        navigator.geolocation.getCurrentPosition((position) => {
-        pingList.push(position.coords);
-        })
-      }, 5000);
+    var pingList = [];
+    var pings = function() {
+        console.log('dicks')
+        navigator.geolocation.getCurrentPosition(
+          (position)=> {
+            var initialPosition = position;
+            this.setState({initialPostion: initialPosition})
+          },
+          (error)=> AlertIOS(error.message),
+          {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+        );
+        this.watchID = navigator.geolocation.watchPosition((position)=> {
+          var lastPosition = position;
+          this.setState({lastPosition: lastPosition})
+          pingList.push(this.state.lastPosition)
+        },
+        (error)=> AlertIOS('pls halp')
+      )
+    }.bind(this);
+    pings();
     this.props.navigator.push({
       title: "Trip Page",
       component: TripPage,
       passProps: {
         pings: pings,
         pingList: pingList,
-        username: this.props.username
+        username: this.props.username,
+        watchID: this.watchID,
+        lastPosition: this.state.lastPosition
         }
     });
   }

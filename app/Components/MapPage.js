@@ -1,4 +1,4 @@
-  var React = require('react-native')
+var React = require('react-native')
 var MapView = require('react-native-maps')
 
 var {
@@ -73,7 +73,7 @@ class MapPage extends React.Component{
   }
 
   render(){
-    debugger
+    debugger;
     var pins = this.props.crumbs.map((marker,index) => {
       return (
         <MapView.Marker
