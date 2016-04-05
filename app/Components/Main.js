@@ -15,6 +15,21 @@ var {
 } = React;
 
 var styles = StyleSheet.create({
+  button: {
+    opacity: 0.5,
+    height: 45,
+    flexDirection: 'row',
+    backgroundColor: 'black',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
   mainContainer: {
     flex: 1,
     justifyContent: 'flex-start',
@@ -28,7 +43,7 @@ var styles = StyleSheet.create({
     marginTop: 10,
     padding: 4,
     fontSize: 18,
-    borderColor: '#48bbec',
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
@@ -38,6 +53,7 @@ var styles = StyleSheet.create({
     color: 'white',
     backgroundColor: 'black',
     opacity: 0.5,
+
   },
 
   title: {
@@ -57,38 +73,24 @@ var styles = StyleSheet.create({
     height: null,
   },
 
-  searchInput: {
+  textInput: {
     height: 50,
     padding: 20,
     marginRight: 5,
     fontSize: 23,
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: 'black',
     borderRadius: 8,
     color: 'white',
+
   },
   image: {
     height: 250,
   },
   buttonText: {
     fontSize: 18,
-    color: 'white',
+    color: 'orange',
     alignSelf: 'center'
-  },
-  button: {
-    opacity: 0.5,
-    height: 45,
-    flexDirection: 'row',
-    backgroundColor: 'black',
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    marginRight: 50,
-    marginLeft: 50,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
   },
 });
 
@@ -130,18 +132,22 @@ class Main extends React.Component{
 
   render(){
     return (
-      <Image source={require('../Images/paris.gif')} style={styles.backgroundImage}>
+      <Image source={require('../Images/big-bin-gif.gif')} style={styles.backgroundImage}>
 
       <TextInput
         onChangeText={ (text)=> this.setState({name: text}) }
         style={styles.input} placeholder="Name">
       </TextInput>
+
+
+
       <TextInput
         onChangeText={ (text)=> this.setState({password: text}) }
         style={styles.input}
         placeholder="Password"
         secureTextEntry={true}>
       </TextInput>
+
       <TouchableHighlight
         style={styles.button}
         onPress={this.handleSubmit.bind(this)}

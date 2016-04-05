@@ -10,7 +10,8 @@ var {
   ActivityIndicatorIOS,
   AlertIOS,
   Text,
-  View
+  View,
+  Image
 } = React;
 
 class Register extends React.Component {
@@ -39,31 +40,32 @@ class Register extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.heading}>
-          Join us now!
-        </Text>
+       <Image source={require('../Images/India.gif')} style={styles.backgroundImage}>
+
         <TextInput
           onChangeText={ (text)=> this.setState({email: text}) }
-          style={styles.input} placeholder="Email">
+          style={styles.input} placeholder="Email"
+          placeholderTextColor="white">
         </TextInput>
         <TextInput
           onChangeText={ (text)=> this.setState({name: text}) }
-          style={styles.input} placeholder="Name">
+          style={styles.input} placeholder="Name"
+          placeholderTextColor="white">
         </TextInput>
         <TextInput
           onChangeText={ (text)=> this.setState({password: text}) }
           style={styles.input}
           placeholder="Password"
+          placeholderTextColor="white"
           secureTextEntry={true}>
         </TextInput>
         <TouchableHighlight onPress={this.onRegisterPressed.bind(this)} style={styles.button}>
           <Text style={styles.buttonText}>
-            Register
+            Submit
           </Text>
         </TouchableHighlight>
-      </View>
-    );
+      </Image>
+    )
   }
 }
 
@@ -81,24 +83,53 @@ var styles = StyleSheet.create({
     marginTop: 10,
     padding: 4,
     fontSize: 18,
+    borderColor: 'black',
     borderWidth: 1,
-    borderColor: '#48bbec'
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
+    color: 'white',
+    backgroundColor: 'black',
+    opacity: 0.45,
+
   },
   button: {
-    height: 50,
-    backgroundColor: '#48BBEC',
-    alignSelf: 'stretch',
+    opacity: 0.45,
+    height: 45,
+    flexDirection: 'row',
+    backgroundColor: 'black',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
     marginTop: 10,
-    justifyContent: 'center'
+    marginRight: 50,
+    marginLeft: 50,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
   },
+
   buttonText: {
-    fontSize: 22,
-    color: '#FFF',
+    fontSize: 18,
+    color: 'orange',
     alignSelf: 'center'
   },
   heading: {
     fontSize: 30,
   },
+
+    backgroundImage: {
+    flex: 1,
+    // resizeMode: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // resizeMode: Image.resizeMode.contain,
+    width: null,
+    height: null,
+  },
+
   error: {
     color: 'red',
     paddingTop: 10
