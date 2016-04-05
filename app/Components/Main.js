@@ -65,12 +65,13 @@ var styles = StyleSheet.create({
 
   backgroundImage: {
     flex: 1,
-    // resizeMode: 'stretch',
+    resizeMode: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
-    // resizeMode: Image.resizeMode.contain,
+    resizeMode: Image.resizeMode.contain,
     width: null,
     height: null,
+    resizeMode: 'stretch',
   },
 
   textInput: {
