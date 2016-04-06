@@ -21,13 +21,12 @@ class Register extends React.Component {
     super();
 
     this.state = {
-      email: "",
-      name: "",
+      username: "",
       password: "",
     }
   }
 
-  onRegisterPressed() {
+  onRegisterPressed() { 
     api.checkUser(this.state.name)
     .then((res) => {
       if(res !== null){
@@ -35,7 +34,7 @@ class Register extends React.Component {
           'That username has already been taken'
         )
       } else {
-        api.addUser(this.state.name, this.state.email, this.state.password).then(this.props.navigator.pop())
+        api.addUser(this.state.name, this.state.password).then(this.props.navigator.pop())
       }
     });
   };
