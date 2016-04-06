@@ -1,13 +1,11 @@
 var api = {
-  addUser(inputUsername, inputEmail, inputPassword){
-    email = inputEmail;
+  addUser(inputUsername, inputPassword){
     password = inputPassword;
     var url = `https://amber-torch-3121.firebaseio.com/${inputUsername}.json`;
     return fetch(url, {
       method: 'put',
       body: JSON.stringify({
         info:{
-              email: email,
               password: password,
             }
       })

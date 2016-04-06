@@ -10,8 +10,8 @@ var {
   Image,
   TouchableHighlight,
   ActivityIndicatorIOS,
+  TextInput,
   AlertIOS,
-  TextInput
 } = React;
 
 var styles = StyleSheet.create({
@@ -51,18 +51,18 @@ var styles = StyleSheet.create({
     color: 'white'
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 14,
     color: 'white',
     alignSelf: 'center'
   },
   button: {
-    opacity: 0.5,
+    opacity: 0.7,
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'black',
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 8,
+    backgroundColor: '#FF3366',
+    // borderColor: 'white',
+    // borderWidth: 1,
+    borderRadius: 2,
     marginBottom: 10,
     marginTop: 10,
     marginRight: 50,
@@ -107,15 +107,12 @@ class Home extends React.Component{
             var initialPosition = position;
             this.setState({initialPostion: initialPosition})
           },
-          (error)=> AlertIOS(error.message),
-          {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
         );
         this.watchID = navigator.geolocation.watchPosition((position)=> {
           var lastPosition = position;
           this.setState({lastPosition: lastPosition})
           pingList.push(this.state.lastPosition)
-        },
-        (error)=> AlertIOS('pls halp')
+        }
       )
     }.bind(this);
     pings();
