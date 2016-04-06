@@ -73,7 +73,8 @@ class TripSummary extends React.Component{
       pingList: this.props.pingList,
       name: '',
       description: '',
-      tags: ''
+      tags: '',
+      lastPosition: this.props.lastPosition
     }
   }
 
@@ -82,10 +83,9 @@ class TripSummary extends React.Component{
    trip.name = this.state.name
    trip.description = this.state.description
    trip.tags = this.state.tags
-   trip.timestamp = this.props.crumbs[this.props.crumbs.length - 1].timestamp
+   trip.timestamp = this.props.crumbs[this.props.crumbs.length - 1].pos.timestamp
    trip.crumbs = this.props.crumbs
    trip.pingList = this.props.pingList
-   debugger
     this.setState({
       isLoading: true
     });
@@ -93,10 +93,10 @@ class TripSummary extends React.Component{
       .then((data) => {
         this.props.crumbs.length = 0
       });
-    clearInterval(this.props.pings);
+    navigator.geolocation.clearWatch(this.props.watchID);
+    navigator.geolocation.stopObserving();
     this.props.navigator.popN(2);
   }
-
 
   render(){
     return (
