@@ -77,6 +77,7 @@ class Home extends React.Component{
     super(props);
     watchID: (null: ?number),
     this.state = {
+      isLoading: false,
       initialPosition: {},
       lastPosition: {}
     }
@@ -92,7 +93,7 @@ class Home extends React.Component{
       passProps: {
         username: this.props.username,
         trips: data,
-        lastPosition: this.state.lastPosition
+        lastPosition: this.state.lastPosition,
       }
     })
   })
