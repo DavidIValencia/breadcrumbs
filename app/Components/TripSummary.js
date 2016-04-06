@@ -1,12 +1,6 @@
-// resume trip (back)
-// Trip name text field
-// Description text area
-// Tags
-// Sare
-// Delete
-
 var React = require('react-native')
 var api = require('../Utils/api')
+var Home = require('./Home')
 
 var {
   StyleSheet,
@@ -74,7 +68,8 @@ class TripSummary extends React.Component{
       name: '',
       description: '',
       tags: '',
-      lastPosition: this.props.lastPosition
+      lastPosition: this.props.lastPosition,
+      donesies: true,
     }
   }
 
@@ -94,8 +89,20 @@ class TripSummary extends React.Component{
         this.props.crumbs.length = 0
       });
     navigator.geolocation.clearWatch(this.props.watchID);
+
     navigator.geolocation.stopObserving();
+
+    tripStatusChange('inactive');
+
     this.props.navigator.popN(2);
+    // this.props.navigator.push({
+    //   title: "Home",
+    //   component: Home,
+    //   passProps: {
+    //     tripSaved: true,
+    //   }
+    // })
+
   }
 
   render(){

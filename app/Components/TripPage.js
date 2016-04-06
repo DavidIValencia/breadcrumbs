@@ -20,7 +20,6 @@ var styles = StyleSheet.create({
     marginTop: 65,
     flexDirection: 'column',
     justifyContent: 'center',
-    // backgroundColor: 'rgba(0,0,0,0)'
   },
 
   backgroundImage: {
@@ -28,7 +27,6 @@ var styles = StyleSheet.create({
     resizeMode: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
-    // resizeMode: Image.resizeMode.contain,
     width: null,
     height: null,
   },
@@ -165,10 +163,10 @@ class TripPage extends React.Component{
             <Text style={styles.buttonText}>View Path on Map</Text>
         </TouchableHighlight>
 
-       
+
         <TextInput
           value={this.state.title}
-          onChangeText={ (text)=> this.setState({title: text}) } 
+          onChangeText={ (text)=> this.setState({title: text}) }
           style={styles.input}
           placeholder="Add Title"
           placeholderTextColor="white"
@@ -177,7 +175,7 @@ class TripPage extends React.Component{
 
         <TextInput
           value={this.state.note}
-          onChangeText={ (text)=> this.setState({note: text}) } 
+          onChangeText={ (text)=> this.setState({note: text}) }
           style={styles.input}
           placeholder="Add Note"
           placeholderTextColor="white"
@@ -187,7 +185,7 @@ class TripPage extends React.Component{
 
         <TextInput
           value={this.state.tag}
-          onChangeText={ (text)=> this.setState({tag: text}) } 
+          onChangeText={ (text)=> this.setState({tag: text}) }
           style={styles.input}
           placeholder="Add Tags"
           placeholderTextColor="white"
@@ -212,6 +210,5 @@ class TripPage extends React.Component{
     )
   }
 }
-
 
 module.exports = TripPage;

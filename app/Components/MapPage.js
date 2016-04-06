@@ -62,7 +62,6 @@ var styles = StyleSheet.create({
 });
 
 // this function returns a data collection that MapView.Polyline can digest
-// as an argument, it takes the same thing we call .map on for the markers
 var drawLines = function(someCoords){
   var lineCoords = [];
   someCoords.forEach(function(element){
@@ -85,11 +84,9 @@ class MapPage extends React.Component{
       initialLatitude: this.props.pingList[0].coords.latitude,
       initialLongitude: this.props.pingList[0].coords.longitude
     }
-  } 
+  }
 
-  // good place for debugger is just inside render
   render(){
-    debugger
     var pins = this.props.crumbs.map((marker,index) => {
       return (
         <MapView.Marker
