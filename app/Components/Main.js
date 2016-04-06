@@ -44,15 +44,21 @@ var styles = StyleSheet.create({
       opacity: 0
   },
   signin: {
-      backgroundColor: '#FF3366',
+      borderColor: '#FF3366',
+      borderWidth: 3, 
+      // backgroundColor: '#FF3366',
+      // opacity: .7,
       padding: 20,
       alignItems: 'center',
-      opacity: .7
+      marginRight: 60,
+      marginLeft: 60,
+      
   },
   signup: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: .15
+    flex: .15,
+
   },
   inputs: {
       marginTop: 10,
@@ -91,7 +97,7 @@ var styles = StyleSheet.create({
     color: '#D8D8D8'
   },
   whiteFont: {
-    color: '#FFF'
+    color: '#FFF',
   },
 
   backgroundImage: {

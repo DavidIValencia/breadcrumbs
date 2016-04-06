@@ -50,18 +50,18 @@ var styles = StyleSheet.create({
     color: 'white'
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 14,
     color: 'white',
     alignSelf: 'center'
   },
   button: {
-    opacity: 0.5,
+    opacity: 0.7,
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'black',
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 8,
+    backgroundColor: '#FF3366',
+    // borderColor: 'white',
+    // borderWidth: 1,
+    borderRadius: 2,
     marginBottom: 10,
     marginTop: 10,
     marginRight: 50,
