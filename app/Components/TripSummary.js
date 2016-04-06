@@ -69,7 +69,6 @@ class TripSummary extends React.Component{
       description: '',
       tags: '',
       lastPosition: this.props.lastPosition,
-      donesies: true,
     }
   }
 
