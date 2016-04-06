@@ -80,17 +80,17 @@ class PastTrips extends React.Component{
   }
 
   goToMap(key){
-    console.log(key);
     api.getTrip(this.props.username, key)
-      .then((data)=> { console.log(data)
-
-      // this.props.navigator.push({
-      //   title: "Map View",
-      //   component: MapPage,
-      //   passProps: {
-      //     username: this.props.username
-      //   }
-      // });
+      .then((data)=> {
+      this.props.navigator.push({
+        title: "Map View",
+        component: MapPage,
+        passProps: {
+          crumbs: data.crumbs,
+          pingList: data.pingList,
+          username: this.props.username
+        }
+      });
     })
   }
 
