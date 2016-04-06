@@ -134,7 +134,6 @@ class Main extends React.Component{
   render(){
     return (
       <Image source={require('../Images/big-bin-gif.gif')} style={styles.backgroundImage}>
-
         <TextInput
           onChangeText={ (text)=> this.setState({username: text}) }
           style={styles.input} placeholder="Name"

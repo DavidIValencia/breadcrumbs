@@ -72,7 +72,6 @@ var styles = StyleSheet.create({
 });
 
 class Home extends React.Component{
-  
   constructor(props){
     super(props);
     watchID: (null: ?number),
@@ -96,7 +95,7 @@ class Home extends React.Component{
       }
     })
   })
-} 
+}
 
   newTrip(){
     var pingList = [];
@@ -131,6 +130,19 @@ class Home extends React.Component{
     });
   }
 
+  // This function returns the appropriate button regarding one's trip
+  whichButton(){
+    if(!this.hasOwnProperty('watchID')){
+      return (
+        <Text style={styles.buttonText}>Start New Trip</Text>
+      )
+    } else {
+      return (
+        <Text style={styles.buttonText}>Resume Trip</Text>
+      )
+    }
+  }
+
   render(){
     return (
       <Image source={require('../Images/bay-bridge-traffic.gif')} style={styles.backgroundImage}>
@@ -144,7 +156,7 @@ class Home extends React.Component{
           style={styles.button}
           onPress={this.newTrip.bind(this)}
           underlayColor='#88D4F5'>
-            <Text style={styles.buttonText}>Start New Trip</Text>
+            { this.whichButton() }
         </TouchableHighlight>
       </Image>
     )
