@@ -19,14 +19,13 @@ var {
 class Register extends React.Component {
   constructor(){
     super();
-
     this.state = {
       username: "",
       password: "",
     }
   }
 
-  onRegisterPressed() { 
+  onRegisterPressed() {
     api.checkUser(this.state.name)
     .then((res) => {
       if(res !== null){
@@ -62,7 +61,7 @@ class Register extends React.Component {
                         onChangeText={ (text)=> this.setState({password: text}) }
                         password={true}
                         style={[styles.input, styles.whiteFont]}
-                        placeholder="Pasword"
+                        placeholder="Password"
                         placeholderTextColor="#FFF"
                         value={this.state.password}
                     />
@@ -73,7 +72,7 @@ class Register extends React.Component {
               style={styles.signin}
               onPress={this.onRegisterPressed.bind(this)}>
               <Text style={styles.whiteFont}>Sign Up</Text>
-        
+
             </TouchableHighlight>
             <TouchableHighlight
               style={styles.signup}>
@@ -110,7 +109,7 @@ var styles = StyleSheet.create({
   },
   signin: {
       borderColor: '#FFF',
-      borderWidth: 1, 
+      borderWidth: 1,
       // backgroundColor: '#FF3366',
       // opacity: .7,
       padding: 20,

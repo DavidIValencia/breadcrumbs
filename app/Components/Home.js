@@ -14,6 +14,13 @@ var {
   AlertIOS,
 } = React;
 
+var tripStatus = 'inactive';
+
+
+tripStatusChange = function(status){
+  tripStatus = status;
+}
+
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
@@ -60,8 +67,6 @@ var styles = StyleSheet.create({
     height: 45,
     flexDirection: 'row',
     backgroundColor: '#FF3366',
-    // borderColor: 'white',
-    // borderWidth: 1,
     borderRadius: 2,
     marginBottom: 10,
     marginTop: 10,
@@ -79,7 +84,7 @@ class Home extends React.Component{
     this.state = {
       isLoading: false,
       initialPosition: {},
-      lastPosition: {}
+      lastPosition: {},
     }
   }
 
@@ -100,6 +105,7 @@ class Home extends React.Component{
 }
 
   newTrip(){
+    tripStatusChange('active');
     var pingList = [];
     var pings = function() {
         navigator.geolocation.getCurrentPosition(
@@ -110,8 +116,10 @@ class Home extends React.Component{
         );
         this.watchID = navigator.geolocation.watchPosition((position)=> {
           var lastPosition = position;
-          this.setState({lastPosition: lastPosition})
-          pingList.push(this.state.lastPosition)
+          this.setState({
+            lastPosition: lastPosition,
+          });
+          pingList.push(this.state.lastPosition);
         }
       )
     }.bind(this);
@@ -129,9 +137,8 @@ class Home extends React.Component{
     });
   }
 
-  // This function returns the appropriate button regarding one's trip
   whichButton(){
-    if(!this.hasOwnProperty('watchID')){
+    if(tripStatus === 'inactive'){
       return (
         <Text style={styles.buttonText}>Start New Trip</Text>
       )

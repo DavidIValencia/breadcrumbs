@@ -54,11 +54,10 @@ var styles = StyleSheet.create({
 });
 
 class UserPage extends React.Component{
-
   render(){
     return (
       <View style={styles.mainContainer}>
-        <Text>Boooooobs</Text>
+        <Text>Your are on the User Page</Text>
       </View>
     )
   }

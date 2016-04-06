@@ -1,5 +1,3 @@
-//still here?
-
 var React = require('react-native')
 var Dimensions = require('Dimensions');
 var windowSize = Dimensions.get('window');
@@ -45,14 +43,12 @@ var styles = StyleSheet.create({
   },
   signin: {
       borderColor: '#FF3366',
-      borderWidth: 3, 
-      // backgroundColor: '#FF3366',
-      // opacity: .7,
+      borderWidth: 3,
       padding: 20,
       alignItems: 'center',
       marginRight: 60,
       marginLeft: 60,
-      
+
   },
   signup: {
     justifyContent: 'center',
@@ -152,7 +148,6 @@ class Main extends React.Component{
 
   render(){
     return (
-
       <View style={styles.container}>
             <Image style={styles.bg} source={require('../Images/paris.gif')} />
             <View style={styles.header}>
@@ -175,7 +170,7 @@ class Main extends React.Component{
                         onChangeText={ (text)=> this.setState({password: text}) }
                         password={true}
                         style={[styles.input, styles.whiteFont]}
-                        placeholder="Pasword"
+                        placeholder="Password"
                         placeholderTextColor="#FFF"
                         value={this.state.password}
                     />
@@ -188,7 +183,7 @@ class Main extends React.Component{
               style={styles.signin}
               onPress={this.handleSubmit.bind(this)}>
               <Text style={styles.whiteFont}>Sign In</Text>
-        
+
             </TouchableHighlight>
             <TouchableHighlight
               style={styles.signup}
