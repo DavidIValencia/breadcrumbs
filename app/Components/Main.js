@@ -117,7 +117,9 @@ class Main extends React.Component{
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      initialPosition: {},
+      lastPosition: {}
     }
   }
 

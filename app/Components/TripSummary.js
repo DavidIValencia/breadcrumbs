@@ -120,7 +120,7 @@ class TripSummary extends React.Component{
    trip.name = this.state.name
    trip.description = this.state.description
    trip.tags = this.state.tags
-   trip.timestamp = this.props.crumbs[this.props.crumbs.length - 1].pos.timestamp
+   trip.timestamp = this.props.pingList[this.props.pingList.length - 1].timestamp
    trip.crumbs = this.props.crumbs
    trip.pingList = this.props.pingList
     this.setState({
