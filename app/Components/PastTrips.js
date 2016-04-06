@@ -124,7 +124,7 @@ class PastTrips extends React.Component{
             <Text> {rowData.name} </Text>
           </TouchableHighlight>
           <Text> {rowData.description} </Text>
-          <Text> {rowData._key} </Text>
+          <Text> {new Date(Math.floor(rowData.timestamp)).toDateString()} </Text>
         </View>
         <Separator />
       </View>
