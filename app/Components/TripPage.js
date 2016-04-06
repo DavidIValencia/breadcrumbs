@@ -207,7 +207,7 @@ class TripPage extends React.Component{
             style={styles.button}
             onPress={this.saveTrip.bind(this)}
             underlayColor="red">
-            <Text style={styles.buttonText}> End Trip </Text>
+            <Text style={styles.buttonText}> Finish Trip </Text>
           </TouchableHighlight>
       </Image>
     )

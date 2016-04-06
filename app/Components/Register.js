@@ -1,4 +1,6 @@
 var React = require('react-native')
+var Dimensions = require('Dimensions');
+var windowSize = Dimensions.get('window');
 var api = require('../Utils/api')
 
 var {
@@ -19,13 +21,12 @@ class Register extends React.Component {
     super();
 
     this.state = {
-      email: "",
-      name: "",
+      username: "",
       password: "",
     }
   }
 
-  onRegisterPressed() {
+  onRegisterPressed() { 
     api.checkUser(this.state.name)
     .then((res) => {
       if(res !== null){
@@ -33,112 +34,147 @@ class Register extends React.Component {
           'That username has already been taken'
         )
       } else {
-        api.addUser(this.state.name, this.state.email, this.state.password).then(this.props.navigator.pop())
+        api.addUser(this.state.name, this.state.password).then(this.props.navigator.pop())
       }
     });
   };
 
   render() {
     return (
-       <Image source={require('../Images/India.gif')} style={styles.backgroundImage}>
+      <View style={styles.container}>
+        <Image style={styles.bg} source={require('../Images/India.gif')} />
+        <View style={styles.header}>
+            <Image style={styles.mark} source={{uri: 'http://i.imgur.com/da4G0Io.png'}} />
+        </View>
+        <View style={styles.inputs}><View style={styles.inputContainer}>
+                    <Image style={styles.inputUsername} source={{uri: 'http://i.imgur.com/iVVVMRX.png'}}/>
+                    <TextInput
+                      onChangeText={ (text)=> this.setState({username: text}) }
+                        style={[styles.input, styles.whiteFont]}
+                        placeholder="Username"
+                        placeholderTextColor="#FFF"
+                        value={this.state.username}
+                    />
+                </View>
+                <View style={styles.inputContainer}>
+                    <Image style={styles.inputPassword} source={{uri: 'http://i.imgur.com/ON58SIG.png'}}/>
+                    <TextInput
+                        onChangeText={ (text)=> this.setState({password: text}) }
+                        password={true}
+                        style={[styles.input, styles.whiteFont]}
+                        placeholder="Pasword"
+                        placeholderTextColor="#FFF"
+                        value={this.state.password}
+                    />
+                </View>
 
-        <TextInput
-          onChangeText={ (text)=> this.setState({email: text}) }
-          style={styles.input} placeholder="Email"
-          placeholderTextColor="white">
-        </TextInput>
-
-        <TextInput
-          onChangeText={ (text)=> this.setState({name: text}) }
-          style={styles.input} placeholder="Name"
-          placeholderTextColor="white">
-        </TextInput>
-        <TextInput
-          onChangeText={ (text)=> this.setState({password: text}) }
-          style={styles.input}
-          placeholder="Password"
-          placeholderTextColor="white"
-          secureTextEntry={true}>
-        </TextInput>
-
-        <TouchableHighlight onPress={this.onRegisterPressed.bind(this)} style={styles.button}>
-          <Text style={styles.buttonText}>
-            Submit
-          </Text>
-        </TouchableHighlight>
-      </Image>
+            </View>
+            <TouchableHighlight
+              style={styles.signin}
+              onPress={this.onRegisterPressed.bind(this)}>
+              <Text style={styles.whiteFont}>Sign Up</Text>
+        
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.signup}>
+              <Text style={styles.greyFont}>Don't have an account?<Text style={styles.whiteFont}>  Sign Up</Text></Text>
+            </TouchableHighlight>
+        </View>
     )
   }
 }
 
 var styles = StyleSheet.create({
   container: {
+    flexDirection: 'column',
     flex: 1,
-    justifyContent: 'flex-start',
+    backgroundColor: 'transparent'
+  },
+  bg: {
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      width: windowSize.width,
+      height: windowSize.height
+  },
+  header: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      flex: .5,
+      backgroundColor: 'transparent'
+  },
+  mark: {
+      width: 150,
+      height: 150,
+      opacity: 0
+  },
+  signin: {
+      borderColor: '#FFF',
+      borderWidth: 1, 
+      // backgroundColor: '#FF3366',
+      // opacity: .7,
+      padding: 20,
+      alignItems: 'center',
+      marginRight: 60,
+      marginLeft: 60,
+  },
+  signup: {
+    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    padding: 10,
-    paddingTop: 80
+    flex: .15,
+    opacity: 0,
+
+  },
+  inputs: {
+      marginTop: 10,
+      marginBottom: 10,
+      flex: .25
+  },
+  inputPassword: {
+      marginLeft: 15,
+      width: 20,
+      height: 21
+  },
+  inputUsername: {
+    marginLeft: 15,
+    width: 20,
+    height: 20
+  },
+  inputContainer: {
+      padding: 10,
+      borderWidth: 1,
+      borderBottomColor: '#CCC',
+      borderColor: 'transparent'
   },
   input: {
-    height: 50,
-    marginTop: 10,
-    padding: 4,
-    fontSize: 18,
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    marginRight: 50,
-    marginLeft: 50,
-    color: 'white',
-    backgroundColor: 'black',
-    opacity: 0.45,
-
+      position: 'absolute',
+      left: 61,
+      top: 12,
+      right: 0,
+      height: 20,
+      fontSize: 14
   },
-  button: {
-    opacity: 0.45,
-    height: 45,
-    flexDirection: 'row',
-    backgroundColor: 'black',
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    marginRight: 50,
-    marginLeft: 50,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
+  forgotContainer: {
+    alignItems: 'flex-end',
+    padding: 15,
+  },
+  greyFont: {
+    color: '#D8D8D8'
+  },
+  whiteFont: {
+    color: '#FFF',
   },
 
-  buttonText: {
-    fontSize: 18,
-    color: 'orange',
-    alignSelf: 'center'
-  },
-  heading: {
-    fontSize: 30,
-  },
-
-    backgroundImage: {
+  backgroundImage: {
     flex: 1,
-    // resizeMode: 'stretch',
+    resizeMode: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
-    // resizeMode: Image.resizeMode.contain,
+    resizeMode: Image.resizeMode.contain,
     width: null,
     height: null,
+    resizeMode: 'stretch',
   },
-
-  error: {
-    color: 'red',
-    paddingTop: 10
-  },
-  loader: {
-    marginTop: 20
-  }
 });
 
 module.exports = Register;
