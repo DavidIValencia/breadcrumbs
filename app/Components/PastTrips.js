@@ -2,6 +2,7 @@ var React = require('react-native')
 var Separator = require('../Helpers/Separator')
 var Firebase = require('firebase')
 var MapPage = require('./MapPage')
+var api = require('../Utils/api')
 
 var {
   StyleSheet,
@@ -62,7 +63,7 @@ class PastTrips extends React.Component{
   constructor(props){
     super(props);
     this.renderRow = this.renderRow.bind(this);
-    this._goToMap = this._goToMap.bind(this);
+    this.goToMap = this.goToMap.bind(this);
     this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
     this.state = {
       dataSource: this.ds.cloneWithRows(this.props.trips),
@@ -78,22 +79,25 @@ class PastTrips extends React.Component{
     this.listenforTrips(this.tripsRef);
   }
 
-  _goToMap(key){
+  goToMap(key){
     console.log(key);
-    this.props.navigator.push({
-      title: "Map View",
-      component: MapPage,
-      passProps: {
-        tripID: key
-      }
-    });
+    api.getTrip(this.props.username, key)
+      .then((data)=> { console.log(data)
+
+      // this.props.navigator.push({
+      //   title: "Map View",
+      //   component: MapPage,
+      //   passProps: {
+      //     username: this.props.username
+      //   }
+      // });
+    })
   }
 
 
   listenforTrips(tripsRef) {
     tripsRef.on('value', (snap)=> {
       snap.forEach((child)=> {
-        console.log(child.key())
         this.state.trips.push({
           id: child.val().id,
           name: child.val().name,
@@ -110,15 +114,13 @@ class PastTrips extends React.Component{
   }
 
   renderRow(rowData){
-    console.log(this)
     return (
-    <Image source={require('../Images/bay-bridge-traffic.gif')} style={styles.backgroundImage}>
       <View>
         <View style={styles.rowContainer}>
           <TouchableHighlight
             style={styles.button}
             underlayColor="#88D4F5"
-            onPress={this._goToMap(rowData._key)}>
+            onPress={()=> this.goToMap(rowData._key)}>
             <Text> {rowData.name} </Text>
           </TouchableHighlight>
           <Text> {rowData.description} </Text>
@@ -126,7 +128,6 @@ class PastTrips extends React.Component{
         </View>
         <Separator />
       </View>
-     </Image>
     )
   }
 

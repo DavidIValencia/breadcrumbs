@@ -29,6 +29,10 @@ var api = {
   getTrips(inputUsername){
     return fetch(`https://amber-torch-3121.firebaseio.com/${inputUsername}/trips.json`).then((res)=> res.json());
   },
+
+  getTrip(inputUsername, key){
+    return fetch(`https://amber-torch-3121.firebaseio.com/${inputUsername}/trips/${key}.json`).then((res)=> res.json());
+  }
 };
 
 module.exports = api;
