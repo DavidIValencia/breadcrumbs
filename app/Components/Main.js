@@ -1,3 +1,5 @@
+//still here?
+
 var React = require('react-native')
 var Dimensions = require('Dimensions');
 var windowSize = Dimensions.get('window');
