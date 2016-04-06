@@ -115,6 +115,7 @@ class MapPage extends React.Component{
       lastPosition: this.props.lastPosition
     }
   }
+
   
   // good place for debugger is just inside render
   render(){

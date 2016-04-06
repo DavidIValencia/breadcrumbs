@@ -4,12 +4,13 @@ var TripSummary = require('./TripSummary')
 
 var {
   StyleSheet,
+  Image,
   Text,
   View,
   TouchableHighlight,
   ActivityIndicatorIOS,
   TextInput,
-  AlertIOS
+  AlertIOS,
 } = React;
 
 var styles = StyleSheet.create({
@@ -19,13 +20,25 @@ var styles = StyleSheet.create({
     marginTop: 65,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#48BBEC'
+    // backgroundColor: 'rgba(0,0,0,0)'
   },
+
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // resizeMode: Image.resizeMode.contain,
+    width: null,
+    height: null,
+  },
+
+
   title: {
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
-    color: '#fff'
+    color: 'white'
   },
   searchInput: {
     height: 50,
@@ -37,23 +50,47 @@ var styles = StyleSheet.create({
     borderRadius: 8,
     color: 'white'
   },
+
   buttonText: {
     fontSize: 18,
-    color: '#111',
+    color: 'orange',
     alignSelf: 'center'
   },
+
   button: {
+    opacity: 0.5,
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'orange',
-    borderColor: 'white',
+    backgroundColor: 'black',
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
     marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
+
+  input: {
+    height: 50,
+    marginTop: 10,
+    padding: 4,
+    fontSize: 18,
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
+    color: 'white',
+    backgroundColor: 'black',
+    opacity: 0.5,
+
+  },
+
 });
 
 var tripCrumbs = []
@@ -119,42 +156,59 @@ class TripPage extends React.Component{
 
   render(){
     return (
-      <View style={styles.mainContainer}>
+      <Image source={require('../Images/nordic-lake.gif')} style={styles.backgroundImage}>
+
         <TouchableHighlight
           style={styles.button}
           onPress={this.goToMap.bind(this)}
           underlayColor='#88D4F5'>
             <Text style={styles.buttonText}>View Path on Map</Text>
         </TouchableHighlight>
-        <Text>Add Title</Text>
+
+       
         <TextInput
-          style={styles.searchInput}
           value={this.state.title}
-          onChangeText={ (text)=> this.setState({title: text}) } />
-        <Text>Add Note</Text>
+          onChangeText={ (text)=> this.setState({title: text}) } 
+          style={styles.input}
+          placeholder="Add Title"
+          placeholderTextColor="white"
+          secureTextEntry={false}>
+        </TextInput>
+
         <TextInput
-          style={styles.searchInput}
           value={this.state.note}
-          onChangeText={ (text)=> this.setState({note: text}) } />
-        <Text>Add Tags</Text>
+          onChangeText={ (text)=> this.setState({note: text}) } 
+          style={styles.input}
+          placeholder="Add Note"
+          placeholderTextColor="white"
+          secureTextEntry={false}>
+        </TextInput>
+
+
         <TextInput
-          style={styles.searchInput}
           value={this.state.tag}
-          onChangeText={ (text)=> this.setState({tag: text}) } />
+          onChangeText={ (text)=> this.setState({tag: text}) } 
+          style={styles.input}
+          placeholder="Add Tags"
+          placeholderTextColor="white"
+          secureTextEntry={false}>
+        </TextInput>
+
           <TouchableHighlight
             style={styles.button}
             onPress={this.saveCrumb.bind(this)}
             underlayColor="green">
-              <Text style={styles.title}>Save Breadcrumb</Text>
+
+            <Text style={styles.buttonText}>Save Breadcrumb</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={styles.button}
             onPress={this.saveTrip.bind(this)}
             underlayColor="red">
-              <Text style={styles.title}> End Trip </Text>
+            <Text style={styles.buttonText}> End Trip </Text>
           </TouchableHighlight>
-      </View>
+      </Image>
     )
   }
 }

@@ -65,12 +65,13 @@ var styles = StyleSheet.create({
 
   backgroundImage: {
     flex: 1,
-    // resizeMode: 'stretch',
+    resizeMode: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
-    // resizeMode: Image.resizeMode.contain,
+    resizeMode: Image.resizeMode.contain,
     width: null,
     height: null,
+    resizeMode: 'stretch',
   },
 
   textInput: {
@@ -133,7 +134,6 @@ class Main extends React.Component{
   render(){
     return (
       <Image source={require('../Images/big-bin-gif.gif')} style={styles.backgroundImage}>
-
         <TextInput
           onChangeText={ (text)=> this.setState({username: text}) }
           style={styles.input} placeholder="Name"
