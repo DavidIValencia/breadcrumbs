@@ -10,6 +10,7 @@ var {
   Image,
   TouchableHighlight,
   ActivityIndicatorIOS,
+  AlertIOS,
   TextInput
 } = React;
 

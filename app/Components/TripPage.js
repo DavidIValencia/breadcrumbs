@@ -73,7 +73,6 @@ class TripPage extends React.Component{
   }
 
   goToMap(){
-    console.log(this.props.pingList);
     this.setState({
       isLoading: true
     });

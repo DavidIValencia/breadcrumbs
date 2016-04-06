@@ -1,6 +1,7 @@
 var React = require('react-native')
 var Separator = require('../Helpers/Separator')
 var Firebase = require('firebase')
+var MapPage = require('./MapPage')
 
 var {
   StyleSheet,
@@ -48,20 +49,41 @@ var styles = StyleSheet.create({
 class PastTrips extends React.Component{
   constructor(props){
     super(props);
+    this.renderRow = this.renderRow.bind(this);
+    this._goToMap = this._goToMap.bind(this);
     this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2})
     this.state = {
       dataSource: this.ds.cloneWithRows(this.props.trips),
       error: '',
-      trips: []
+      trips: [],
+      crumbs: {},
+      pingList: {}
     }
     this.tripsRef = new Firebase(`https://amber-torch-3121.firebaseio.com/${this.props.username}/trips`);
+  }
+
+  componentDidMount() {
+    this.listenforTrips(this.tripsRef);
+  }
+
+  _goToMap(key){
+    console.log(key);
+    this.props.navigator.push({
+      title: "Map View",
+      component: MapPage,
+      passProps: {
+        tripID: key
+      }
+    });
   }
 
 
   listenforTrips(tripsRef) {
     tripsRef.on('value', (snap)=> {
       snap.forEach((child)=> {
+        console.log(child.key())
         this.state.trips.push({
+          id: child.val().id,
           name: child.val().name,
           description: child.val().description,
           tags: child.val().tags,
@@ -75,60 +97,26 @@ class PastTrips extends React.Component{
     });
   }
 
-  // viewTrip() {
-  //   var tripIndex = 
-  // }
-
-  componentDidMount() {
-    this.listenforTrips(this.tripsRef);
-  }
-
   renderRow(rowData){
+    console.log(this)
     return (
       <View>
         <View style={styles.rowContainer}>
           <TouchableHighlight
             style={styles.button}
-            // onPress={this.viewTrip.bind(this)}
-            underlayColor="#88D4F5">
+            underlayColor="#88D4F5"
+            onPress={this._goToMap(rowData._key)}>
             <Text> {rowData.name} </Text>
           </TouchableHighlight>
           <Text> {rowData.description} </Text>
+          <Text> {rowData._key} </Text>
         </View>
         <Separator />
       </View>
     )
   }
 
-  // <Image source={require('../Images/India.gif')} style={styles.backgroundImage}>
-
-  //       <TextInput
-  //         onChangeText={ (text)=> this.setState({email: text}) }
-  //         style={styles.input} placeholder="Email"
-  //         placeholderTextColor="white">
-  //       </TextInput>
-
-  //       <TextInput
-  //         onChangeText={ (text)=> this.setState({name: text}) }
-  //         style={styles.input} placeholder="Name"
-  //         placeholderTextColor="white">
-  //       </TextInput>
-  //       <TextInput
-  //         onChangeText={ (text)=> this.setState({password: text}) }
-  //         style={styles.input}
-  //         placeholder="Password"
-  //         placeholderTextColor="white"
-  //         secureTextEntry={true}>
-  //       </TextInput>
-
-  //       <TouchableHighlight onPress={this.onRegisterPressed.bind(this)} style={styles.button}>
-  //         <Text style={styles.buttonText}>
-  //           Submit
-  //         </Text>
-  //       </TouchableHighlight>
-
   render(){
-    debugger
     return (
       <View style={styles.container}>
           <ListView
