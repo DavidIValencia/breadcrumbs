@@ -26,15 +26,15 @@ class Register extends React.Component {
     }
   }
 
-  onRegisterPressed() { 
-    api.checkUser(this.state.name)
+  onRegisterPressed() {
+    api.checkUser(this.state.username)
     .then((res) => {
       if(res !== null){
         AlertIOS.alert(
           'That username has already been taken'
         )
       } else {
-        api.addUser(this.state.name, this.state.password).then(this.props.navigator.pop())
+        api.addUser(this.state.username, this.state.password).then(this.props.navigator.pop())
       }
     });
   };
@@ -73,7 +73,7 @@ class Register extends React.Component {
               style={styles.signin}
               onPress={this.onRegisterPressed.bind(this)}>
               <Text style={styles.whiteFont}>Sign Up</Text>
-        
+
             </TouchableHighlight>
             <TouchableHighlight
               style={styles.signup}>
@@ -110,7 +110,7 @@ var styles = StyleSheet.create({
   },
   signin: {
       borderColor: '#FFF',
-      borderWidth: 1, 
+      borderWidth: 1,
       // backgroundColor: '#FF3366',
       // opacity: .7,
       padding: 20,
