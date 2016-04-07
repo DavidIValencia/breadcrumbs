@@ -18,65 +18,56 @@ var {
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    padding: 30,
+    // padding: 30,
     marginTop: 5,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#8f9fb2'
+    // backgroundColor: '#8f9fb2'
   },
   title: {
     marginBottom: 5,
     fontSize: 14,
     textAlign: 'center',
-    color: '#3c454f',
+    color: 'white',
     fontFamily: 'Helvetica',
-    fontWeight: '700'
+    fontWeight: '700',
+    backgroundColor: 'transparent'
   },
   date: {
     marginBottom: 5,
     fontSize: 14,
     textAlign: 'center',
-    color: '#515b67',
+    color: 'white',
     fontFamily: 'Helvetica',
+    backgroundColor: 'transparent'
   },
   backgroundImage: {
     flex: 1,
     resizeMode: 'stretch',
     justifyContent: 'center',
-    alignItems: 'center',
-    resizeMode: Image.resizeMode.contain,
+    // alignItems: 'center',
+    // resizeMode: Image.resizeMode.contain,
     width: null,
     height: null,
     resizeMode: 'stretch'
 
   },
-  searchInput: {
-    height: 50,
-    padding: 4,
-    marginRight: 5,
-    fontSize: 23,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 8,
-    color: 'white'
-  },
   buttonText: {
     fontSize: 14,
     color: 'white',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginLeft: 25,
+    marginRight: 25
   },
   button: {
-    opacity: 0.9,
+    opacity: 0.8,
     height: 45,
     flexDirection: 'row',
     backgroundColor: '#FF3366',
-    borderColor: '#e7315f',
-    borderWidth: 1,
-    borderRadius: 2,
     marginBottom: 10,
     marginTop: 10,
-    marginRight: 50,
-    marginLeft: 50,
+    marginRight: 80,
+    marginLeft: 80,
     alignSelf: 'stretch',
     justifyContent: 'center',
   },
@@ -161,9 +152,11 @@ class PastTrips extends React.Component{
   render(){
     return (
       <View style={styles.mainContainer}>
+        <Image style={styles.backgroundImage} source={require('../Images/mt-background.jpg')}>
           <ListView
             dataSource={this.state.dataSource}
             renderRow={this.renderRow} />
+            </Image>
       </View>
     )
   }

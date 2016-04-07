@@ -10,6 +10,7 @@ var {
   TouchableHighlight,
   ActivityIndicatorIOS,
   TextInput,
+  CameraRoll,
   AlertIOS,
 } = React;
 
@@ -17,8 +18,8 @@ var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 30,
-    marginTop: 65,
-    flexDirection: 'column',
+    // marginTop: 65,
+    // flexDirection: 'column',
     justifyContent: 'center',
     // backgroundColor: 'rgba(0,0,0,0)'
   },
@@ -35,7 +36,7 @@ var styles = StyleSheet.create({
 
 
   title: {
-    marginBottom: 20,
+    // marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
     color: 'white'
@@ -43,7 +44,7 @@ var styles = StyleSheet.create({
   searchInput: {
     height: 50,
     padding: 4,
-    marginRight: 5,
+    // marginRight: 5,
     fontSize: 23,
     borderWidth: 1,
     borderColor: 'white',
@@ -53,43 +54,109 @@ var styles = StyleSheet.create({
 
   buttonText: {
     fontSize: 18,
-    color: 'orange',
-    alignSelf: 'center'
+    color: 'white',
+    alignSelf: 'center',
+    opacity: 1,
+    marginRight: 25,
+    marginLeft: 25,
   },
 
   button: {
-    opacity: 0.5,
+    opacity: 0.7,
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'black',
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    marginRight: 50,
-    marginLeft: 50,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
+    backgroundColor: '#FF3366',
+    // borderColor: 'black',
+    // borderWidth: 1,
+    // borderRadius: 8,
+    // marginBottom: 10,
+    // marginTop: 10,
+    // marginRight: 50,
+    // marginLeft: 50,
+    // alignSelf: 'stretch',
+    // justifyContent: 'center',
   },
 
   input: {
     height: 50,
-    marginTop: 10,
+    width: 300,
+    // marginTop: 10,
     padding: 4,
     fontSize: 18,
     borderColor: 'black',
     borderWidth: 1,
-    borderRadius: 8,
+    // borderRadius: 8,
     marginBottom: 10,
-    marginTop: 10,
-    marginRight: 50,
-    marginLeft: 50,
+    // marginTop: 10,
+    // marginRight: 50,
+    // marginLeft: 50,
     color: 'white',
     backgroundColor: 'black',
-    opacity: 0.5,
-
+    opacity: 0.7,
   },
+
+  note: {
+    height: 100,
+    width: 300,
+    // marginTop: 10,
+    padding: 4,
+    fontSize: 18,
+    borderColor: 'black',
+    borderWidth: 1,
+    // borderRadius: 8,
+    // marginBottom: 10,
+    marginTop: 10,
+    // marginRight: 50,
+    // marginLeft: 50,
+    color: 'white',
+    backgroundColor: 'black',
+    opacity: 0.7,
+  },
+
+  topBlock: {
+    marginTop: 150,
+    marginBottom: 20,
+    flex: 1,
+    flexDirection: 'row'
+  },
+
+  middleBlock: {
+    flex: 4,
+    flexDirection: 'column',
+    marginTop: 30
+  },
+
+  bottomBlock: {
+    flex: 1,
+    marginTop: 130,
+    flexDirection: 'row'
+  },
+
+  finish: {
+    flex: 8,
+    flexDirection: 'row',
+    marginTop: 110,
+  },
+
+  leftCol: {
+    flex: 1,
+    flexDirection: 'column',
+    marginRight: 16
+  },
+  rightCol: {
+    flex: 1,
+    flexDirection: 'column',
+    marginLeft: 18
+  },
+  breadButtonText: {
+  fontSize: 18,
+  color: 'white',
+  alignSelf: 'center',
+  opacity: 1,
+  marginRight: 78,
+  marginLeft: 78,
+},
+
 
 });
 
@@ -107,6 +174,18 @@ class TripPage extends React.Component{
       tag: '',
       lastPosition: this.props.lastPosition
     }
+  }
+
+  addPhotos(){
+    debugger
+    CameraRoll.getPhotos(
+    {first: 1},
+    (data) => {
+      this.state.image = data;
+    },
+    (error) => {
+      console.warn(error);
+    });
   }
 
   goToMap(){
@@ -158,14 +237,27 @@ class TripPage extends React.Component{
     return (
       <Image source={require('../Images/nordic-lake.gif')} style={styles.backgroundImage}>
 
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.goToMap.bind(this)}
-          underlayColor='#88D4F5'>
-            <Text style={styles.buttonText}>View Path on Map</Text>
-        </TouchableHighlight>
+      <View style={styles.topBlock}>
+        <View style={styles.leftCol}>
 
-       
+          <TouchableHighlight
+            style={styles.button}
+            onPress={this.goToMap.bind(this)}
+            underlayColor='#88D4F5'>
+              <Text style={styles.buttonText}>View Map</Text>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.rightCol}>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={this.addPhotos.bind(this)}
+            underlayColor="green">
+              <Text style={styles.buttonText}>Add Photo</Text>
+          </TouchableHighlight>
+        </View>
+
+      </View>
+      <View style={styles.middleBlock}>
         <TextInput
           value={this.state.title}
           onChangeText={ (text)=> this.setState({title: text}) } 
@@ -178,36 +270,31 @@ class TripPage extends React.Component{
         <TextInput
           value={this.state.note}
           onChangeText={ (text)=> this.setState({note: text}) } 
-          style={styles.input}
+          style={styles.note}
+          multiline={true}
           placeholder="Add Note"
           placeholderTextColor="white"
           secureTextEntry={false}>
         </TextInput>
+      </View>
 
 
-        <TextInput
-          value={this.state.tag}
-          onChangeText={ (text)=> this.setState({tag: text}) } 
-          style={styles.input}
-          placeholder="Add Tags"
-          placeholderTextColor="white"
-          secureTextEntry={false}>
-        </TextInput>
-
+        <View style={styles.bottomBlock}>
           <TouchableHighlight
             style={styles.button}
             onPress={this.saveCrumb.bind(this)}
             underlayColor="green">
-
-          <Text style={styles.buttonText}>Save Breadcrumb</Text>
+              <Text style={styles.breadButtonText}>Save Breadcrumb</Text>
           </TouchableHighlight>
-
+        </View>
+        <View style={styles.finish}>
           <TouchableHighlight
             style={styles.button}
             onPress={this.saveTrip.bind(this)}
             underlayColor="red">
             <Text style={styles.buttonText}> Finish Trip </Text>
           </TouchableHighlight>
+        </View>
       </Image>
     )
   }

@@ -51,6 +51,7 @@ var styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
+
 });
 
 class UserPage extends React.Component{
@@ -58,7 +59,7 @@ class UserPage extends React.Component{
   render(){
     return (
       <View style={styles.mainContainer}>
-        <Text>Boooooobs</Text>
+        <Text></Text>
       </View>
     )
   }

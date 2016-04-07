@@ -109,14 +109,14 @@ var styles = StyleSheet.create({
       opacity: 0
   },
   signin: {
-      borderColor: '#FFF',
-      borderWidth: 1,
       // backgroundColor: '#FF3366',
       // opacity: .7,
       padding: 20,
       alignItems: 'center',
       marginRight: 60,
       marginLeft: 60,
+      backgroundColor: '#FF3366',
+      opacity: 0.8
   },
   signup: {
     justifyContent: 'center',

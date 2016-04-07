@@ -44,10 +44,8 @@ var styles = StyleSheet.create({
       opacity: 0
   },
   signin: {
-      borderColor: '#FF3366',
-      borderWidth: 3, 
-      // backgroundColor: '#FF3366',
-      // opacity: .7,
+      backgroundColor: '#FF3366',
+      opacity: 0.8,
       padding: 20,
       alignItems: 'center',
       marginRight: 60,
@@ -58,7 +56,6 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: .15,
-
   },
   inputs: {
       marginTop: 10,
@@ -79,7 +76,7 @@ var styles = StyleSheet.create({
       padding: 10,
       borderWidth: 1,
       borderBottomColor: '#CCC',
-      borderColor: 'transparent'
+      borderColor: 'transparent',
   },
   input: {
       position: 'absolute',
@@ -94,10 +91,12 @@ var styles = StyleSheet.create({
     padding: 15,
   },
   greyFont: {
-    color: '#D8D8D8'
+    color: '#D8D8D8',
   },
   whiteFont: {
     color: '#FFF',
+    fontSize: 14,
+    opacity: 1,
   },
 
   backgroundImage: {
@@ -110,6 +109,10 @@ var styles = StyleSheet.create({
     height: null,
     resizeMode: 'stretch',
   },
+
+  fullOpacity: {
+    opacity: 1
+  }
 });
 
 class Main extends React.Component{
@@ -187,8 +190,9 @@ class Main extends React.Component{
             <TouchableHighlight
               style={styles.signin}
               onPress={this.handleSubmit.bind(this)}>
-              <Text style={styles.whiteFont}>Sign In</Text>
-        
+                <View style={styles.fullOpacity}>
+                  <Text style={styles.whiteFont}>Sign In</Text>
+                </View>
             </TouchableHighlight>
             <TouchableHighlight
               style={styles.signup}
