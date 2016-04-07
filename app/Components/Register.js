@@ -62,7 +62,7 @@ class Register extends React.Component {
                         onChangeText={ (text)=> this.setState({password: text}) }
                         password={true}
                         style={[styles.input, styles.whiteFont]}
-                        placeholder="Pasword"
+                        placeholder="Password"
                         placeholderTextColor="#FFF"
                         value={this.state.password}
                     />
