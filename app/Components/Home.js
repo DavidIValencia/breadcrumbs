@@ -60,8 +60,6 @@ var styles = StyleSheet.create({
     height: 45,
     flexDirection: 'row',
     backgroundColor: '#FF3366',
-    // borderColor: 'white',
-    // borderWidth: 1,
     borderRadius: 2,
     marginBottom: 10,
     marginTop: 10,
@@ -129,19 +127,6 @@ class Home extends React.Component{
     });
   }
 
-  // This function returns the appropriate button regarding one's trip
-  whichButton(){
-    if(!this.hasOwnProperty('watchID')){
-      return (
-        <Text style={styles.buttonText}>Start New Trip</Text>
-      )
-    } else {
-      return (
-        <Text style={styles.buttonText}>Resume Trip</Text>
-      )
-    }
-  }
-
   render(){
     return (
       <Image source={require('../Images/bay-bridge-traffic.gif')} style={styles.backgroundImage}>
@@ -155,7 +140,7 @@ class Home extends React.Component{
           style={styles.button}
           onPress={this.newTrip.bind(this)}
           underlayColor='#88D4F5'>
-            { this.whichButton() }
+            <Text style={styles.buttonText}>Start New Trip</Text>
         </TouchableHighlight>
       </Image>
     )
@@ -163,31 +148,3 @@ class Home extends React.Component{
 }
 
 module.exports = Home;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
