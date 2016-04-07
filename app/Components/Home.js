@@ -138,18 +138,6 @@ class Home extends React.Component{
     });
   }
 
-  whichButton(){
-    if(!this.hasOwnProperty('watchID')){
-      return (
-        <Text style={styles.buttonText}>New Trip</Text>
-      )
-    } else {
-      return (
-        <Text style={styles.buttonText}>Resume Trip</Text>
-      )
-    }
-  }
-
   render(){
     return (
       <Image source={require('../Images/big-bin-gif.gif')} style={styles.backgroundImage}>
@@ -166,7 +154,7 @@ class Home extends React.Component{
               onPress={this.newTrip.bind(this)}
               style={styles.button}
               underlayColor='#88D4F5'>
-                { this.whichButton() }
+                <Text style={styles.buttonText}>Start New Trip</Text>
           </TouchableHighlight>
         </View>
       </Image>
