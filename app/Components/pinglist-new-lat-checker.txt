@@ -22,7 +22,6 @@ state{
 CameraRoll.getPhotos(
   {first: 1},
   (data) => {
-  debugger
     this.state.image = data;
   },
   (error) => {

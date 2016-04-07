@@ -8,9 +8,9 @@ var {
 
 var styles = StyleSheet.create({
   separator: {
-    height:1,
+    height: 2,
     backgroundColor: '#E4E4E4',
-    flex: 1,
+    flex: 2,
     marginLeft: 15
   },
 });

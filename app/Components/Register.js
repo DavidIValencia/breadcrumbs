@@ -27,14 +27,14 @@ class Register extends React.Component {
   }
 
   onRegisterPressed() { 
-    api.checkUser(this.state.name)
+    api.checkUser(this.state.username)
     .then((res) => {
       if(res !== null){
         AlertIOS.alert(
           'That username has already been taken'
         )
       } else {
-        api.addUser(this.state.name, this.state.password).then(this.props.navigator.pop())
+        api.addUser(this.state.username, this.state.password).then(this.props.navigator.pop())
       }
     });
   };
@@ -109,14 +109,14 @@ var styles = StyleSheet.create({
       opacity: 0
   },
   signin: {
-      borderColor: '#FFF',
-      borderWidth: 1, 
       // backgroundColor: '#FF3366',
       // opacity: .7,
       padding: 20,
       alignItems: 'center',
       marginRight: 60,
       marginLeft: 60,
+      backgroundColor: '#FF3366',
+      opacity: 0.8
   },
   signup: {
     justifyContent: 'center',

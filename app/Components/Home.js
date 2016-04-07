@@ -38,7 +38,14 @@ var styles = StyleSheet.create({
     width: null,
     height: null,
     resizeMode: 'stretch'
-
+  },
+  topBlock: {
+    flex: 5,
+    flexDirection: 'row'
+  },
+  bottomBlock:{
+    flex: 1,
+    flexDirection: 'row',
   },
   searchInput: {
     height: 50,
@@ -51,12 +58,15 @@ var styles = StyleSheet.create({
     color: 'white'
   },
   buttonText: {
-    fontSize: 14,
+    fontSize: 18,
     color: 'white',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    opacity: 1,
+    marginRight: 20,
+    marginLeft: 20,
   },
   button: {
-    opacity: 0.7,
+    opacity: 0.8,
     height: 45,
     flexDirection: 'row',
     backgroundColor: '#FF3366',
@@ -65,10 +75,11 @@ var styles = StyleSheet.create({
     borderRadius: 2,
     marginBottom: 10,
     marginTop: 10,
-    marginRight: 50,
-    marginLeft: 50,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
+    marginRight: 40,
+    marginLeft: 40,
+  },
+  textWrap: {
+    opacity: 1
   },
 });
 
@@ -132,7 +143,7 @@ class Home extends React.Component{
   whichButton(){
     if(!this.hasOwnProperty('watchID')){
       return (
-        <Text style={styles.buttonText}>Start New Trip</Text>
+        <Text style={styles.buttonText}>New Trip</Text>
       )
     } else {
       return (
@@ -143,19 +154,23 @@ class Home extends React.Component{
 
   render(){
     return (
-      <Image source={require('../Images/bay-bridge-traffic.gif')} style={styles.backgroundImage}>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.goToPastTrips.bind(this)}
-          underlayColor='#88D4F5'>
-            <Text style={styles.buttonText}>Past Trips</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.newTrip.bind(this)}
-          underlayColor='#88D4F5'>
-            { this.whichButton() }
-        </TouchableHighlight>
+      <Image source={require('../Images/big-bin-gif.gif')} style={styles.backgroundImage}>
+        <View style={styles.topBlock}>
+        </View>
+        <View style={styles.bottomBlock}>
+          <TouchableHighlight
+            onPress={this.goToPastTrips.bind(this)}
+            style={styles.button}
+            underlayColor='#88D4F5'>
+              <Text style={styles.buttonText}>Past Trips</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+              onPress={this.newTrip.bind(this)}
+              style={styles.button}
+              underlayColor='#88D4F5'>
+                { this.whichButton() }
+          </TouchableHighlight>
+        </View>
       </Image>
     )
   }

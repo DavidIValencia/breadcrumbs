@@ -84,7 +84,6 @@ class MapPage extends React.Component{
       lastPosition: this.props.lastPosition,
       initialLatitude: this.props.pingList[0].coords.latitude,
       initialLongitude: this.props.pingList[0].coords.longitude,
-      image: this.state.image
     }
   } 
 
