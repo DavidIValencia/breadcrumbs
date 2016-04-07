@@ -199,7 +199,7 @@ class TripPage extends React.Component{
             onPress={this.saveCrumb.bind(this)}
             underlayColor="green">
 
-            <Text style={styles.buttonText}>Save Breadcrumb</Text>
+          <Text style={styles.buttonText}>Save Breadcrumb</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
@@ -215,3 +215,9 @@ class TripPage extends React.Component{
 
 
 module.exports = TripPage;
+
+
+
+
+
+

@@ -10,12 +10,13 @@ var api = require('../Utils/api')
 
 var {
   StyleSheet,
+  Image,
   Text,
   View,
   TouchableHighlight,
   ActivityIndicatorIOS,
   TextInput,
-  AlertIOS
+  AlertIOS,
 } = React;
 
 var styles = StyleSheet.create({
@@ -25,13 +26,25 @@ var styles = StyleSheet.create({
     marginTop: 65,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#48BBEC'
+    // backgroundColor: 'rgba(0,0,0,0)'
   },
+
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // resizeMode: Image.resizeMode.contain,
+    width: null,
+    height: null,
+  },
+
+
   title: {
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
-    color: '#fff'
+    color: 'white'
   },
   searchInput: {
     height: 50,
@@ -43,23 +56,47 @@ var styles = StyleSheet.create({
     borderRadius: 8,
     color: 'white'
   },
+
   buttonText: {
     fontSize: 18,
-    color: '#111',
+    color: 'orange',
     alignSelf: 'center'
   },
+
   button: {
+    opacity: 0.5,
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
+    backgroundColor: 'black',
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
     marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
+
+  input: {
+    height: 50,
+    marginTop: 10,
+    padding: 4,
+    fontSize: 18,
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
+    color: 'white',
+    backgroundColor: 'black',
+    opacity: 0.5,
+
+  },
+
 });
 
 class TripSummary extends React.Component{
@@ -100,52 +137,78 @@ class TripSummary extends React.Component{
 
   render(){
     return (
-      <View style={styles.mainContainer}>
+      <Image source={require('../Images/campfire.gif')} style={styles.backgroundImage}>
+        
+        
+        <TextInput
+          value={this.props.name}
+          onChangeText={ (text)=> this.setState({name: text}) }
+          style={styles.input}
+          placeholder="Trip Name"
+          placeholderTextColor="white">
+        </TextInput>
+
+        <TextInput
+          value={this.props.description}
+          onChangeText={ (text)=> this.setState({description: text}) }
+          style={styles.input}
+          placeholder="Description"
+          placeholderTextColor="white">
+        </TextInput>
+
+        <TextInput
+          value={this.props.tags}
+          onChangeText={ (text)=> this.setState({tags: text}) }
+          style={styles.input}
+          placeholder="Add Tags"
+          placeholderTextColor="white">
+        </TextInput>
+
         <TouchableHighlight
           style={styles.button}
           onPress={this.saveTrip.bind(this)}
           underlayColor='#88D4F5'>
             <Text style={styles.buttonText}>Save the Trip</Text>
         </TouchableHighlight>
-        <Text>Name Trip</Text>
-        <TextInput
-          style={styles.searchInput}
-          value={this.props.name}
-          onChangeText={ (text)=> this.setState({name: text}) }>
-        </TextInput>
-        <Text>Description</Text>
-        <TextInput
-          style={styles.searchInput}
-          value={this.props.description}
-          onChangeText={ (text)=> this.setState({description: text}) }>
-          </TextInput>
-        <Text>Add Tags</Text>
-        <TextInput
-          style={styles.searchInput}
-          value={this.props.tags}
-          onChangeText={ (text)=> this.setState({tags: text}) }>
-          </TextInput>
-          <TouchableHighlight
-            style={styles.button}
-            onPress={() => AlertIOS.alert(
-                'Are You Sure?'
-              )
-            }
-            underlayColor="green">
-              <Text style={styles.title}>Delete This Shit</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.button}
-            onPress={() => AlertIOS.alert(
-                'Sharing is caring'
-              )
-            }
-            underlayColor="red">
-              <Text style={styles.title}> Share Trip </Text>
-          </TouchableHighlight>
-      </View>
+
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => AlertIOS.alert('Are You Sure?')}
+          underlayColor="red">
+
+        <Text style={styles.buttonText}>Delete</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => AlertIOS.alert('Sharing is caring')}
+          underlayColor="green">
+          <Text style={styles.buttonText}> Share Trip</Text>
+        </TouchableHighlight>
+      </Image>
     )
   }
 }
 
 module.exports = TripSummary;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
