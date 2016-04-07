@@ -70,8 +70,6 @@ var styles = StyleSheet.create({
     height: 45,
     flexDirection: 'row',
     backgroundColor: '#FF3366',
-    // borderColor: 'white',
-    // borderWidth: 1,
     borderRadius: 2,
     marginBottom: 10,
     marginTop: 10,
@@ -177,31 +175,3 @@ class Home extends React.Component{
 }
 
 module.exports = Home;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -26,7 +26,7 @@ class Register extends React.Component {
     }
   }
 
-  onRegisterPressed() { 
+  onRegisterPressed() {
     api.checkUser(this.state.username)
     .then((res) => {
       if(res !== null){
@@ -73,7 +73,7 @@ class Register extends React.Component {
               style={styles.signin}
               onPress={this.onRegisterPressed.bind(this)}>
               <Text style={styles.whiteFont}>Sign Up</Text>
-        
+
             </TouchableHighlight>
             <TouchableHighlight
               style={styles.signup}>

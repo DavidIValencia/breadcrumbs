@@ -85,11 +85,9 @@ class MapPage extends React.Component{
       initialLatitude: this.props.pingList[0].coords.latitude,
       initialLongitude: this.props.pingList[0].coords.longitude,
     }
-  } 
+  }
 
-  // good place for debugger is just inside render
   render(){
-    debugger
     var pins = this.props.crumbs.map((marker,index) => {
       return (
         <MapView.Marker
