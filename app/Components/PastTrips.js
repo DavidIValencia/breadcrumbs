@@ -16,47 +16,73 @@ var {
 } = React;
 
 var styles = StyleSheet.create({
-  container: {
+  mainContainer: {
     flex: 1,
+    padding: 30,
+    marginTop: 5,
     flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: '#8f9fb2'
   },
-  buttonText: {
-    fontSize: 18,
-    color: 'white'
+  title: {
+    marginBottom: 5,
+    fontSize: 14,
+    textAlign: 'center',
+    color: '#3c454f',
+    fontFamily: 'Helvetica',
+    fontWeight: '700'
   },
-
+  date: {
+    marginBottom: 5,
+    fontSize: 14,
+    textAlign: 'center',
+    color: '#515b67',
+    fontFamily: 'Helvetica',
+  },
   backgroundImage: {
     flex: 1,
     resizeMode: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
-    // resizeMode: Image.resizeMode.contain,
+    resizeMode: Image.resizeMode.contain,
     width: null,
     height: null,
-  },
+    resizeMode: 'stretch'
 
-  button: {
-    height: 60,
-    backgroundColor: '#48BBEC',
-    flex: 3,
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   searchInput: {
-    height: 60,
-    padding: 10,
-    fontSize: 18,
-    color: '#111',
-    flex: 10
+    height: 50,
+    padding: 4,
+    marginRight: 5,
+    fontSize: 23,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 8,
+    color: 'white'
   },
-  rowContainer: {
-    padding: 10,
+  buttonText: {
+    fontSize: 14,
+    color: 'white',
+    alignSelf: 'center'
   },
-  // footerContainer: {
-  //   backgroundColor: '#E3E3E3',
-  //   alignItems: 'center',
-  //   flexDirection: 'row'
-  // }
+  button: {
+    opacity: 0.9,
+    height: 45,
+    flexDirection: 'row',
+    backgroundColor: '#FF3366',
+    borderColor: '#e7315f',
+    borderWidth: 1,
+    borderRadius: 2,
+    marginBottom: 10,
+    marginTop: 10,
+    marginRight: 50,
+    marginLeft: 50,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
+  separator: {
+    marginBottom: 50,
+  }
 });
 
 class PastTrips extends React.Component{
@@ -121,19 +147,20 @@ class PastTrips extends React.Component{
             style={styles.button}
             underlayColor="#88D4F5"
             onPress={()=> this.goToMap(rowData._key)}>
-            <Text> {rowData.name} </Text>
+            <Text style={styles.buttonText}> {rowData.name} </Text>
           </TouchableHighlight>
-          <Text> {rowData.description} </Text>
-          <Text> {rowData._key} </Text>
+            <Text style={styles.title}> {rowData.description} </Text>
+            <Text style={styles.date}> {new Date(Math.floor(rowData.timestamp)).toDateString()} </Text>
+
         </View>
-        <Separator />
+        <Separator style={styles.separator} />
       </View>
     )
   }
 
   render(){
     return (
-      <View style={styles.container}>
+      <View style={styles.mainContainer}>
           <ListView
             dataSource={this.state.dataSource}
             renderRow={this.renderRow} />
