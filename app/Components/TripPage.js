@@ -10,6 +10,7 @@ var {
   TouchableHighlight,
   ActivityIndicatorIOS,
   TextInput,
+  CameraRoll,
   AlertIOS,
 } = React;
 
@@ -105,8 +106,40 @@ class TripPage extends React.Component{
       title: '',
       note: '',
       tag: '',
-      lastPosition: this.props.lastPosition
+      lastPosition: this.props.lastPosition,
+      imageSource: {}
     }
+  }
+
+  addImage(){
+    debugger
+    CameraRoll.getPhotos(
+      {first: 1},
+      (data) => {
+        debugger
+        this.state.imageSource = data;
+      },
+      (error) => {
+        console.warn(error);
+    });
+  }
+
+
+
+  // componentDidMount() {
+  //     const fetchParams = {
+  //         first: 1,
+  //     };
+  //     CameraRoll.getPhotos(fetchParams, this.storeImages, this.logImageError);
+  // }
+
+  storeImages(data) {
+      const assets = data.edges;
+      const images = assets.map((asset) => asset.node.image);
+      this.setState({
+          imageSource: images,
+      });
+      console.log(this.state.imageSource)
   }
 
   goToMap(){
@@ -118,6 +151,7 @@ class TripPage extends React.Component{
       component: MapPage,
       passProps: {crumbs: tripCrumbs,
         pingList: this.props.pingList,
+        imageSource: this.state.imageSource
       }
     });
   }
@@ -144,7 +178,6 @@ class TripPage extends React.Component{
       tripCrumbs.push({
         title: this.state.title,
         note: this.state.note,
-        tag: this.state.tag,
         pos: this.props.pingList[this.props.pingList.length - 1]
       });
       this.setState({
@@ -185,20 +218,18 @@ class TripPage extends React.Component{
         </TextInput>
 
 
-        <TextInput
-          value={this.state.tag}
-          onChangeText={ (text)=> this.setState({tag: text}) } 
-          style={styles.input}
-          placeholder="Add Tags"
-          placeholderTextColor="white"
-          secureTextEntry={false}>
-        </TextInput>
+        <TouchableHighlight
+            style={styles.button}
+            onPress={this.addImage.bind(this)}
+            underlayColor="green">
+
+            <Text style={styles.buttonText}>Add Image</Text>
+          </TouchableHighlight>
 
           <TouchableHighlight
             style={styles.button}
             onPress={this.saveCrumb.bind(this)}
             underlayColor="green">
-
             <Text style={styles.buttonText}>Save Breadcrumb</Text>
           </TouchableHighlight>
 

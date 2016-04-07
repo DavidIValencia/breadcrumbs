@@ -8,3 +8,42 @@
           pingList.push(position.coords);
           }})
         }, 5000);
+
+
+
+
+
+//TripPage
+
+state{
+  image: {}
+}
+
+CameraRoll.getPhotos(
+  {first: 1},
+  (data) => {
+  debugger
+    this.state.image = data;
+  },
+  (error) => {
+    console.warn(error);
+});
+
+passProps
+  {
+    image: this.state.image
+  }
+
+//MapPage
+
+render() { 
+  return ( 
+    <Image
+      style={styles.backdrop}
+      source={ this.props.image }
+      resizeMode='cover'>
+    </Image>
+
+    image={require('../assets/pin.png')
+  ); 
+}

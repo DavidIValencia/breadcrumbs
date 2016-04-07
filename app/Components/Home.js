@@ -129,7 +129,6 @@ class Home extends React.Component{
     });
   }
 
-  // This function returns the appropriate button regarding one's trip
   whichButton(){
     if(!this.hasOwnProperty('watchID')){
       return (
