@@ -1,5 +1,6 @@
 #Breadcrumbs:
 
+![landing_page](/app/Images/landing_page.png)
 MVP:
 	horizon 1
 		- mobile app
@@ -64,6 +65,3 @@ Ideas that can be implemented:
 	- search tags
 	- tags associated with a user
 	- autocomplete
-
-
-
